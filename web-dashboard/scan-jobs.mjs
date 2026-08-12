@@ -11,6 +11,7 @@
 //   NODE_OPTIONS=--use-system-ca node web-dashboard/scan-jobs.mjs
 // (the npm script "scan:local" sets this for you).
 
+import { existsSync } from "node:fs";
 import { readFile, writeFile, appendFile } from "node:fs/promises";
 import { loadBoards, fetchBoards } from "./scan-boards.mjs";
 import { fileURLToPath } from "node:url";

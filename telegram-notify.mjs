@@ -69,24 +69,32 @@ export async function sendTelegramMessage(text, options = {}) {
     disable_web_page_preview: options.disable_web_page_preview || false,
   };
 
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
-    const data = await res.json();
-    if (data.ok) {
-      console.log('✅ Telegram message sent successfully!');
-      return { ok: true, data };
-    } else {
-      console.error('❌ Telegram API error:', data);
-      return { ok: false, error: data.description };
+  const maxRetries = options.maxRetries || 3;
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        console.log('✅ Telegram message sent successfully!');
+        return { ok: true, data };
+      } else if (data.error_code === 429) {
+        const retryAfter = (data.parameters?.retry_after || 4) + 1;
+        console.warn(`⏳ Telegram Rate Limit (429). Waiting ${retryAfter}s before retry...`);
+        await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
+      } else {
+        console.error('❌ Telegram API error:', data);
+        return { ok: false, error: data.description };
+      }
+    } catch (err) {
+      console.error('❌ Failed to connect to Telegram API:', err.message);
+      return { ok: false, error: err.message };
     }
-  } catch (err) {
-    console.error('❌ Failed to connect to Telegram API:', err.message);
-    return { ok: false, error: err.message };
   }
+  return { ok: false, error: 'MAX_RETRIES_EXCEEDED' };
 }
 
 /**
