@@ -67,7 +67,8 @@ function parseYamlBlock(yaml, key) {
 const BROAD = new Set(["ai", "ml", "nlp", "mlops", "machine learning"]);
 
 async function loadConfig() {
-  const portals = await readFile(join(ROOT, "portals.yml"), "utf8");
+  const pPath = existsSync(join(ROOT, "portals.yml")) ? join(ROOT, "portals.yml") : join(ROOT, "templates", "portals.example.yml");
+  const portals = await readFile(pPath, "utf8");
   const positive = parseYamlBlock(portals, "positive").filter((p) => !BROAD.has(p.toLowerCase()));
   const negative = parseYamlBlock(portals, "negative");
   // tracked companies: grab name + careers_url + api lines

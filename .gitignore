@@ -41,6 +41,10 @@ jds/*
 *.bak
 
 # User config and customization (never auto-updated)
+config/profile.yml
+modes/_profile.md
+portals.yml
+cv.md
 
 # Generated
 .resolved-prompt-*

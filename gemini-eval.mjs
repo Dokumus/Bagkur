@@ -30,7 +30,8 @@ export async function evaluateJobWithGemini(jobData) {
     return { ok: false, error: 'NO_GEMINI_KEY' };
   }
 
-  const cvPath = path.join(__dirname, 'cv.md');
+  let cvPath = path.join(__dirname, 'cv.md');
+  if (!fs.existsSync(cvPath)) cvPath = path.join(__dirname, 'examples', 'cv-example.md');
   const cvContent = fs.existsSync(cvPath) ? fs.readFileSync(cvPath, 'utf8') : '';
 
   const prompt = `
