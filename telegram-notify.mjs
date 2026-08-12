@@ -11,7 +11,7 @@ function getEnvConfig() {
   const config = {
     TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN || '',
     TELEGRAM_CHAT_ID: process.env.TELEGRAM_CHAT_ID || '',
-    MIN_TELEGRAM_SCORE: parseFloat(process.env.MIN_TELEGRAM_SCORE || '3.3'),
+    MIN_TELEGRAM_SCORE: parseFloat(process.env.MIN_TELEGRAM_SCORE || '3.7'),
   };
 
   if (fs.existsSync(envPath)) {
@@ -30,6 +30,28 @@ function getEnvConfig() {
   }
 
   return config;
+}
+
+// Persistent Telegram Sent History (dedup)
+const sentHistoryPath = path.join(__dirname, 'data', 'sent-telegram.json');
+
+function getSentHistory() {
+  try {
+    if (fs.existsSync(sentHistoryPath)) {
+      return new Set(JSON.parse(fs.readFileSync(sentHistoryPath, 'utf8')));
+    }
+  } catch {}
+  return new Set();
+}
+
+function saveSentHistory(historySet) {
+  try {
+    const dataDir = path.dirname(sentHistoryPath);
+    if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+    fs.writeFileSync(sentHistoryPath, JSON.stringify([...historySet], null, 2), 'utf8');
+  } catch (err) {
+    console.error('❌ Failed to save sent history:', err.message);
+  }
 }
 
 // Update .env with new key-value pair
@@ -98,11 +120,11 @@ export async function sendTelegramMessage(text, options = {}) {
 }
 
 /**
- * Formats and sends a Job Evaluation Alert to Telegram if score >= minScore (3.3)
+ * Formats and sends a Job Evaluation Alert to Telegram if score >= minScore (3.7) and not previously sent
  */
 export async function sendJobEvaluationAlert(jobData) {
   const { MIN_TELEGRAM_SCORE } = getEnvConfig();
-  const minScore = jobData.minScore || MIN_TELEGRAM_SCORE || 3.3;
+  const minScore = jobData.minScore || MIN_TELEGRAM_SCORE || 3.7;
   const score = parseFloat(jobData.score);
 
   if (isNaN(score) || score < minScore) {
@@ -110,10 +132,21 @@ export async function sendJobEvaluationAlert(jobData) {
     return { skipped: true, reason: 'SCORE_BELOW_THRESHOLD' };
   }
 
-  const scoreEmoji = score >= 4.5 ? '🌟' : score >= 4.0 ? '🔥' : score >= 3.5 ? '✅' : '🎯';
+  // Dedup check against sent-telegram.json
+  const sentSet = getSentHistory();
+  const dedupKey = (jobData.jobUrl && !jobData.jobUrl.includes('#')) 
+    ? jobData.jobUrl 
+    : `${(jobData.company || '').toLowerCase().trim()}::${(jobData.role || '').toLowerCase().trim()}`;
+
+  if (sentSet.has(dedupKey)) {
+    console.log(`⏭️ Job "${jobData.company} - ${jobData.role}" already sent to Telegram previously. Skipping duplicate.`);
+    return { skipped: true, reason: 'ALREADY_SENT' };
+  }
+
+  const scoreEmoji = score >= 4.5 ? '🌟' : score >= 4.0 ? '🔥' : '✅';
 
   const messageHtml = `
-<b>${scoreEmoji} Yeni Yüksek Uyumlu İlan Fırsatı!</b>
+<b>${scoreEmoji} Yeni Yüksek Uyumlu İlan Fırsatı! (3.7+)</b>
 
 🏢 <b>Şirket:</b> ${escapeHtml(jobData.company || 'Bilinmiyor')}
 💼 <b>Pozisyon:</b> ${escapeHtml(jobData.role || 'Bilinmiyor')}
@@ -128,7 +161,12 @@ export async function sendJobEvaluationAlert(jobData) {
 📱 <i>Career-Ops Agent Turkey System</i>
 `.trim();
 
-  return await sendTelegramMessage(messageHtml, { parse_mode: 'HTML' });
+  const res = await sendTelegramMessage(messageHtml, { parse_mode: 'HTML' });
+  if (res && res.ok) {
+    sentSet.add(dedupKey);
+    saveSentHistory(sentSet);
+  }
+  return res;
 }
 
 /**
