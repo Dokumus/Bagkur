@@ -63,18 +63,28 @@ function isValidTargetJob(company, title, location) {
     return { ok: false, reason: `Kapsam Dışı Unvan (${title})` };
   }
 
-  // 4. STRICT NO REMOTE POLICY (Remote İlanlar Gösterilmeyecek)
-  if (l.includes('remote') || l.includes('uzak') || t.includes('remote') || t.includes('uzak')) {
-    return { ok: false, reason: "Remote İlan (Sadece TR İçi Fiziksel/Hibrit İsteniyor)" };
+  // 4. REFINED LOCATION POLICY (Istanbul-based Remote ALLOWED, other Remote EXCLUDED)
+  const isIstanbul = /\b(istanbul|kadıköy|kadikoy|ümraniye|umraniye|şişli|sisli|beşiktaş|besiktas|maslak|levent|ataşehir|atasehir|kartal|pendik)\b/i.test(l);
+  const isOtherTrCity = /\b(ankara|izmir|kocaeli|izmit|gebze|antalya|samsun|eskişehir|eskisehir)\b/i.test(l);
+  const isTrGeneric = /\b(türkiye|turkey|turkiye)\b/i.test(l);
+
+  const isRemote = l.includes('remote') || l.includes('uzak') || t.includes('remote') || t.includes('uzak');
+
+  if (isRemote) {
+    if (isIstanbul) {
+      // Istanbul-located company offering Remote -> ALLOWED!
+      return { ok: true, why: "istanbul-remote" };
+    } else {
+      // Non-Istanbul Remote / Global Remote -> EXCLUDED!
+      return { ok: false, reason: "İstanbul Dışı / Jenerik Remote İlan (Sadece İstanbul Merkezli Remote İlanlar Kabul Edilmektedir)" };
+    }
   }
 
-  // 5. Turkey Location Match
-  const trSignal = /\b(türkiye|turkey|turkiye|istanbul|ankara|izmir|kocaeli|izmit|gebze|antalya|samsun|eskişehir|eskisehir|kadıköy|ümraniye|şişli|beşiktaş|maslak|levent|ataşehir|kartal|pendik)\b/i.test(l);
-  if (!trSignal && l.length > 0) {
-    return { ok: false, reason: "Türkiye Dışı Lokasyon" };
+  if (isIstanbul || isOtherTrCity || isTrGeneric) {
+    return { ok: true, why: "tr-physical" };
   }
 
-  return { ok: true };
+  return { ok: false, reason: "Türkiye Dışı Lokasyon" };
 }
 
 /**
