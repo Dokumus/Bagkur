@@ -30,49 +30,80 @@ const slug = (s) => (s || "")
   .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
 /**
- * Strict Location Validator — ONLY Turkey (7 il) and Turkey-accessible Remote
+ * Strict Filter: Title Exclusions, Agency Exclusions, Confidential Exclusions, NO REMOTE Policy
  */
-function isTrOrGlobalRemote(locText) {
-  const t = (locText || "").toLowerCase();
-  if (!t) return true; // Bilinmiyorsa detayda elenebilir
+function isValidTargetJob(company, title, location) {
+  const c = (company || "").trim().toLowerCase();
+  const t = (title || "").trim().toLowerCase();
+  const l = (location || "").trim().toLowerCase();
 
-  // Türkiye Şehirleri ve Terimleri
-  const trSignal = /\b(türkiye|turkey|turkiye|istanbul|ankara|izmir|kocaeli|izmit|gebze|antalya|samsun|eskişehir|eskisehir|kadıköy|ümraniye|şişli|beşiktaş|maslak|levent|ataşehir|kartal|pendik|ümraniye)\b/i.test(t);
-  
-  if (trSignal) return true;
-
-  // Yabancı Ülke / Şehir Kısıtları (Türkiye Dışı)
-  const foreignOnly = /\b(united states|usa|u\.s\.|us only|canada|uk|united kingdom|london|germany|berlin|munich|münchen|amsterdam|netherlands|holland|india|bangalore|singapore|australia|spain|madrid|france|paris)\b/i.test(t);
-
-  // Global / EMEA Remote kontrolü
-  const isRemote = /\bremote\b|anywhere|work from home/i.test(t);
-  const isEmeaGlobal = /\b(emea|worldwide|global|europe|eu)\b/i.test(t);
-
-  if (isRemote && (!foreignOnly || isEmeaGlobal)) {
-    return true;
+  // 1. CONFIDENTIAL / SECRET EMPLOYER EXCLUSION (GİZLİ İlanlar)
+  if (!c || c === '?' || c === 'gizli' || c.includes('gizli firma') || c.includes('confidential') || c.includes('sektorunde oncu firma') || c.includes('firma bilgisi gizli')) {
+    return { ok: false, reason: "GİZLİ / İsimsiz Şirket" };
   }
 
-  return false;
+  // 2. RECRUITMENT / STAFFING AGENCY EXCLUSION (Aracı Firma İlanları)
+  const agencyList = [
+    'pentanom', 'adecco', 'michael page', 'gini talent', 'experis', 'harnham', 
+    'brunel', 'manpower', 'randstad', 'talentown', 'es kariyer', 'es kariyer danis manlik',
+    'danismanlik', 'danismani', 'human resources', 'recruitment'
+  ];
+  if (agencyList.some(a => c.includes(a))) {
+    return { ok: false, reason: "Aracı / İşe Alım Ajansı İlanı" };
+  }
+
+  // 3. NEGATIVE TITLE EXCLUSIONS (Data Engineer, Software Engineer, Growth, Consultant / Danışman)
+  const excludedTitleKeywords = [
+    'data engineer', 'veri muhendisi', 'veri muhendisligi',
+    'software engineer', 'yazilim muhendisi', 'yazilim muhendisligi',
+    'growth', 'buyume',
+    'consultant', 'danisman', 'danismani', 'danismanlik'
+  ];
+  if (excludedTitleKeywords.some(k => t.includes(k))) {
+    return { ok: false, reason: `Kapsam Dışı Unvan (${title})` };
+  }
+
+  // 4. STRICT NO REMOTE POLICY (Remote İlanlar Gösterilmeyecek)
+  if (l.includes('remote') || l.includes('uzak') || t.includes('remote') || t.includes('uzak')) {
+    return { ok: false, reason: "Remote İlan (Sadece TR İçi Fiziksel/Hibrit İsteniyor)" };
+  }
+
+  // 5. Turkey Location Match
+  const trSignal = /\b(türkiye|turkey|turkiye|istanbul|ankara|izmir|kocaeli|izmit|gebze|antalya|samsun|eskişehir|eskisehir|kadıköy|ümraniye|şişli|beşiktaş|maslak|levent|ataşehir|kartal|pendik)\b/i.test(l);
+  if (!trSignal && l.length > 0) {
+    return { ok: false, reason: "Türkiye Dışı Lokasyon" };
+  }
+
+  return { ok: true };
 }
 
 /**
- * Strict, Rational AI Evaluation Logic
+ * Strict, Rational AI Evaluation Logic with Specific Penalties
  */
 async function evaluateJobStrict(jobData, cvContent) {
   const anthropicKey = getEnvKey('ANTHROPIC_API_KEY');
   const geminiKey = getEnvKey('GEMINI_API_KEY');
 
+  const text = ((jobData.role || '') + ' ' + (jobData.description || '')).toLowerCase();
+
+  // Pre-check specific domain penalties
+  const has10YearsReq = /10\+?\s*years|10\+?\s*yıl|10\s*yılı|minimum 10/i.test(text);
+  const hasCreditRisk = /ifrs|ecl|rwa|pd\b|lgd\b|ead\b|kredi riski|kredi tahsis/i.test(text);
+  const hasProductionDE = /3\+?\s*years.*data engineer|spark|airflow|lakehouse|data pipeline/i.test(text);
+
   const prompt = `
-Sen rasyonel, oldukça objektif ve sıkı bir İnsan Kaynakları ve Veri Bilimi Değerlendirme Uzmanısın.
+Sen son derece objektif, rasyonel ve gerçekçi bir İnsan Kaynakları ve Veri Bilimi Teknik Değerlendirme Uzmanısın.
 Görevin, aşağıdaki adayın profilini ilanla karşılaştırıp CİDDİ VE GERÇEKÇİ BİR PUANLAMA (1.0 - 5.0) yapmaktır.
 
-Puan Enflasyonundan Kaçın! Ortalama bir ilan 2.5 - 3.5 arasında kalmalıdır. 4.0 ve üzeri puanlar SADECE Adayın profilinin BİREBİR ÖRTÜŞTÜĞÜ nadir durumlar için saklanmalıdır.
+Puan Enflasyonundan Kaçın! Ortalama bir ilan 2.5 - 3.5 arasında kalmalıdır. 3.7 ve üzeri puanlar SADECE Adayın profilinin BİREBİR ÖRTÜŞTÜĞÜ nadir durumlar içindir.
 
 ADAY PROFİLİ (Doğa Okumuş):
-- Tecrübe: 9 Yıl (Turkcell 2 Patent sahibi - Kampanya ROI Ölçümleme & Kampanya Öneri Motoru, KPN Amsterdam, Getir).
-- Eğitim: Tilburg Üniversitesi M.Sc. Data Science (Hollanda).
+- Deneyim: 9 Yıl Toplam (Turkcell 2 Patent sahibi - Kampanya ROI Ölçümleme & Kampanya Öneri Motoru, Tilburg M.Sc. Data Science, KPN Amsterdam, Getir).
 - Temel Yetkinlikler: İleri SQL, Python (scikit-learn, XGBoost, LightGBM), Power BI, OR-Tools CP-SAT optimizasyonu, Müşteri Segmentasyonu, Raporlama, Süreç Analizi.
-- Hedef Rol: Senior Data Analyst, BI Specialist, Data Scientist (Müşteri/Kampanya Analitiği), Business Analyst.
+- Eksik Olduğu Alanlar (GÖRÜRSEK KESİNLİKLE CEZA UYGULA):
+  * Banka Kredi Riski (PD, LGD, EAD, IFRS-9, ECL, RWA modelleri) tecrübesi YOKTUR (İlan istiyorsa Puan < 3.0 ver).
+  * Saf Veri Mühendisliği (Production Data Engineering / Spark / Airflow 3+ yıl) tecrübesi YOKTUR (İlan istiyorsa Puan < 3.0 ver).
+  * 10+ Yıl Yönetici/Müdür kıdemi beklentisi adayın 9 yıllık uzmanlık seviyesiyle örtüşmez (İlan istiyorsa Puan < 3.0 ver).
 
 DEĞERLENDİRİLECEK İLAN:
 -------------------
@@ -82,19 +113,19 @@ Lokasyon: ${jobData.location || 'Türkiye'}
 İlan Metni:
 ${(jobData.description || '').slice(0, 3000)}
 
-PUANLAMA KURALLARI (ÇOK SIKI VE RASYONEL UYGULA):
-- 4.5 - 5.0: Olağanüstü Uyum (SQL+Python+Power BI + Telekom/Perakende kampanya/müşteri analitiği + tam kıdem).
-- 4.0 - 4.4: Güçlü Uyum (Teknik yetkinlikler tam, en fazla 1 önemsiz araç eksikliği).
-- 3.3 - 3.9: Sınırda / Şartlı Uyum (Pozisyon adayın tecrübesine göre biraz farklı bir alanda veya hafif alt/üst kıdemde).
-- 1.0 - 3.2: DÜŞÜK UYUM (Adayın alanıyla ilgisiz, pure Java/C++ yazılım, pure MLOps altyapı, veya basit Excel veri girişi).
+PUANLAMA KURALLARI:
+- 4.5 - 5.0: Mükemmel Uyum (SQL+Python+Power BI + Telekom/Perakende kampanya/müşteri analitiği + tam kıdem).
+- 3.7 - 4.4: Güçlü Uyum (Teknik yetkinlikler tam, adayın uzmanlık alanına oturuyor).
+- 3.0 - 3.6: Sınırda / Zayıf Uyum (Telegram'a gönderilmeyecek).
+- 1.0 - 2.9: DÜŞÜK UYUM (Domain uyuşmazlığı: Banka kredi riski, 10+ yıl yönetici, saf DE, MLOps, C++).
 
 Lütfen cevabını SADECE şu JSON formatında yaz:
 {
-  "score": 3.4,
-  "summary": "Teknik yetkinlikler kısmen örtüşüyor, ancak domain farkı ve MLOps şartı nedeniyle puan kısıtlandı.",
+  "score": 2.8,
+  "summary": "İlan kredi riski (IFRS-9/PD) tecrübesi gerektirdiğinden adayın profiline uymamaktadır.",
   "strengths": ["İleri SQL ve Veri Analizi tecrübesi"],
-  "gaps": ["Zorunlu C++ ve altyapı mühendisliği tecrübesi eksik"],
-  "recommendation": "Koşullu Başvurulabilir"
+  "gaps": ["Banka Kredi Riski ve ECL/RWA modelleme tecrübesi bulunmamaktadır"],
+  "recommendation": "Pas Geçilebilir"
 }
 `;
 
@@ -116,10 +147,15 @@ Lütfen cevabını SADECE şu JSON formatında yaz:
       });
       const data = await res.json();
       if (data.content && data.content[0]?.text) {
-        const text = data.content[0].text;
-        const match = text.match(/\{[\s\S]*\}/);
+        const match = data.content[0].text.match(/\{[\s\S]*\}/);
         if (match) {
-          return { ok: true, evaluation: JSON.parse(match[0]) };
+          const evalRes = JSON.parse(match[0]);
+          // Post-process domain penalties if model missed it
+          if ((hasCreditRisk || has10YearsReq || hasProductionDE) && evalRes.score > 3.2) {
+            evalRes.score = 2.8;
+            evalRes.recommendation = "Pas Geçilebilir (Domain/Kıdem Uyuşmazlığı)";
+          }
+          return { ok: true, evaluation: evalRes };
         }
       }
     } catch (err) {
@@ -127,53 +163,32 @@ Lütfen cevabını SADECE şu JSON formatında yaz:
     }
   }
 
-  // 2. Gemini Call
-  if (geminiKey) {
-    try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { responseMimeType: 'application/json' }
-        })
-      });
-      const data = await res.json();
-      if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
-        return { ok: true, evaluation: JSON.parse(data.candidates[0].content.parts[0].text) };
-      }
-    } catch (err) {
-      console.warn('⚠️ Gemini call error:', err.message);
-    }
-  }
-
-  // 3. Strict Heuristic Rule-Engine
-  const text = ((jobData.role || '') + ' ' + (jobData.description || '')).toLowerCase();
-  let score = 2.8; // Baseline lowered to prevent inflation
+  // 2. Heuristic Strict Rule Engine
+  let score = 3.2;
   const strengths = [];
   const gaps = [];
 
   if (/sql|power bi|dashboard|raporlama|veri analisti|data analyst/i.test(text)) {
-    score += 0.5;
+    score += 0.4;
     strengths.push("İleri düzey SQL & Power BI veri analizi tecrübesi");
   }
   if (/python|machine learning|veri bilimci|data scientist/i.test(text)) {
     score += 0.4;
     strengths.push("M.Sc. Veri Bilimi ve Python modelleme altyapısı");
   }
-  if (/turkcell|telekom|crm|kampanya|roi|retention|churn/i.test(text)) {
-    score += 0.4;
-    strengths.push("Turkcell patentli ROI & Kampanya yönetimi domain uyumu");
-  }
 
-  // Deductions (Strictness)
-  if (/java|c\+\+|golang|embedded|firmware|devops|kubernetes/i.test(text)) {
-    score -= 0.8;
-    gaps.push("Yazılım altyapı / MLOps gereksinimleri aday profili dışındadır");
+  // Strict Deductions
+  if (hasCreditRisk) {
+    score -= 1.5;
+    gaps.push("Banka Kredi Riski (PD, LGD, EAD, IFRS-9, ECL, RWA) modelleme tecrübesi yoktur");
   }
-  if (/staj|intern|working student|0-1 yıl/i.test(text)) {
-    score -= 0.6;
-    gaps.push("Başlangıç/Stajyer seviye pozisyon (9 yıllık kıdemle uyuşmuyor)");
+  if (has10YearsReq) {
+    score -= 1.4;
+    gaps.push("10+ Yıl tecrübe / Üst düzey yöneticilik beklentisi kıdem seviyesiyle örtüşmüyor");
+  }
+  if (hasProductionDE) {
+    score -= 1.4;
+    gaps.push("Üretim ortamında saf Veri Mühendisliği (Spark/Airflow) tecrübesi bulunmamaktadır");
   }
 
   score = Math.min(4.5, Math.max(1.5, Math.round(score * 10) / 10));
@@ -184,8 +199,8 @@ Lütfen cevabını SADECE şu JSON formatında yaz:
       score,
       summary: `Rasyonel Değerlendirme: CV yetkinlikleri ile ilan gereksinimleri %${Math.round(score * 20)} oranında uyumludur.`,
       strengths: strengths.length ? strengths : ["Analitik düşünce ve veri analizi temeli"],
-      gaps: gaps.length ? gaps : ["Sektöre özgü araç/yazılım gereksinimi"],
-      recommendation: score >= 4.0 ? "Güçlü Başvurulmalı" : score >= 3.3 ? "Makul / Değerlendirilebilir" : "Pas Geçilebilir"
+      gaps: gaps.length ? gaps : ["Spesifik domain/araç gereksinimi"],
+      recommendation: score >= 3.7 ? "Başvurulabilir" : "Pas Geçilebilir"
     }
   };
 }
@@ -201,11 +216,7 @@ async function main() {
   const cvContent = fs.existsSync(cvPath) ? fs.readFileSync(cvPath, 'utf8') : '';
 
   const cache = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
-  console.log(`📊 Toplam ${cache.length} adet ilan rasyonel kriterlerle filtreleniyor...`);
-
-  // 1. Sıkı Lokasyon Filtresi: Sadece Türkiye ve TR-Uyumlu Global Remote
-  const trJobs = cache.filter(j => isTrOrGlobalRemote(j.location));
-  console.log(`🇹🇷 Filtre Sonrası Türkiye & TR-Remote İlan Sayısı: ${trJobs.length} (Yabancı lokasyonlu ${cache.length - trJobs.length} ilan elendi)`);
+  console.log(`📊 Toplam ${cache.length} adet ilan kullanıcı özel kriterleriyle taranıyor...`);
 
   const additionsDir = path.join(ROOT, 'batch', 'tracker-additions');
   if (!fs.existsSync(additionsDir)) fs.mkdirSync(additionsDir, { recursive: true });
@@ -215,11 +226,21 @@ async function main() {
 
   let count = 0;
   let sentAlerts = 0;
+  let skippedFilter = 0;
   let skippedLowScore = 0;
 
-  for (const job of trJobs) {
+  for (const job of cache) {
     count++;
-    console.log(`\n[${count}/${trJobs.length}] Sıkı Değerlendirme: ${job.company} — ${job.title} (${job.location})`);
+    
+    // Check Strict Filters (Location, Title, Agency, Confidential)
+    const check = isValidTargetJob(job.company, job.title, job.location);
+    if (!check.ok) {
+      console.log(`⏭️ [${count}/${cache.length}] ELEDİ (${check.reason}): ${job.company} — ${job.title} (${job.location})`);
+      skippedFilter++;
+      continue;
+    }
+
+    console.log(`\n[${count}/${cache.length}] Sıkı Değerlendirme: ${job.company} — ${job.title} (${job.location})`);
 
     const result = await evaluateJobStrict({
       company: job.company,
@@ -285,9 +306,10 @@ ${(ev.gaps || []).map(g => `- ${g}`).join('\n')}
     await new Promise(r => setTimeout(r, 400));
   }
 
-  console.log(`\n🎉 TAMAMLANDI: ${trJobs.length} ilan rasyonel kriterlerle değerlendirildi.`);
+  console.log(`\n🎉 TAMAMLANDI: Toplam ${cache.length} ilan işlendi.`);
+  console.log(`🚫 Ön Filtre ile Elenen (Remote/Unvan/Aracı Firma/Gizli): ${skippedFilter}`);
+  console.log(`🛑 Skoru 3.7 Altında Kalıp Elenen İlan: ${skippedLowScore}`);
   console.log(`📲 Telegram'a Gönderilen Gerçek Uyumlu İlan: ${sentAlerts}`);
-  console.log(`🛑 Skoru 3.3 Altında Kalıp Elenen İlan: ${skippedLowScore}`);
 }
 
 main().catch(err => console.error('Hata:', err));
