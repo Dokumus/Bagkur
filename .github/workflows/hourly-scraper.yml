@@ -39,11 +39,14 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          MIN_TELEGRAM_SCORE: '3.3'
+          MIN_TELEGRAM_SCORE: '3.7'
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          echo "==== Starting Hourly Job Scanner (Gemini Free Engine) ===="
+          echo "==== Starting Hourly Job Scanner (7/24 Auto Engine) ===="
           node web-dashboard/scan-jobs.mjs || true
+          node fetch-jds.mjs || true
+          node eval-and-notify.mjs || true
           node merge-tracker.mjs || true
           node liveness-sweep.mjs --limit 60 || true
 
