@@ -1,0 +1,45 @@
+{
+  "name": "career-ops",
+  "version": "1.0.0",
+  "description": "AI-powered job search pipeline built on Claude Code",
+  "scripts": {
+    "dashboard": "node web-dashboard/server.mjs",
+    "scan:local": "node --use-system-ca web-dashboard/scan-jobs.mjs",
+    "scan:freelance": "node --use-system-ca web-dashboard/scan-freelance.mjs",
+    "doctor": "node doctor.mjs",
+    "verify": "node verify-pipeline.mjs",
+    "normalize": "node normalize-statuses.mjs",
+    "dedup": "node dedup-tracker.mjs",
+    "merge": "node merge-tracker.mjs",
+    "pdf": "node generate-pdf.mjs",
+    "sync-check": "node cv-sync-check.mjs",
+    "update:check": "node update-system.mjs check",
+    "update": "node update-system.mjs apply",
+    "rollback": "node update-system.mjs rollback",
+    "liveness": "node check-liveness.mjs",
+    "prune": "node prune-tracker.mjs",
+    "prune:dry": "node prune-tracker.mjs --dry-run",
+    "liveness:sweep": "node --use-system-ca liveness-sweep.mjs",
+    "liveness:dry": "node --use-system-ca liveness-sweep.mjs --dry-run",
+    "posted:backfill": "node --use-system-ca web-dashboard/backfill-posted-dates.mjs",
+    "scan:dry": "node --use-system-ca web-dashboard/scan-jobs.mjs --dry-run",
+    "sources:probe": "node --use-system-ca probe-job-sources.mjs"
+  },
+  "keywords": [
+    "ai",
+    "job-search",
+    "claude-code",
+    "career",
+    "automation"
+  ],
+  "author": "Santiago Fernández de Valderrama <hi@santifer.io> (https://santifer.io)",
+  "homepage": "https://santifer.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santifer/career-ops"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.58.1"
+  }
+}

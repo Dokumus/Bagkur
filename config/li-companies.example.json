@@ -1,0 +1,7 @@
+{
+  "_readme": "Optional override map: company name (exactly as it appears in your reports) → LinkedIn info. The Reference finder guesses the slug from the name automatically; add an entry only when the guess is wrong (common for short or surname-like company names), or to enable the strict 'current employees only' filter. Copy this file to config/li-companies.json (git-ignored) and edit it. You can also add a company straight from the Reference finder modal in the dashboard.",
+  "_how_to_get_slug": "Open the company's LinkedIn page; the slug is the part after /company/ in the URL, e.g. linkedin.com/company/spotify → \"spotify\".",
+  "_how_to_get_id": "On LinkedIn people search, apply the 'Current company' filter for that company, then read the number in the URL: ...currentCompany=[\"1234567\"]... → id \"1234567\". With an id set, the first link on each card becomes a strict current-employees-only filter.",
+  "Spotify": "spotify",
+  "Example Big Co NV": { "slug": "example-big-co", "id": "1234567" }
+}

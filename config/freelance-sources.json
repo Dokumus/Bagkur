@@ -1,0 +1,92 @@
+{
+  "_comment": "Freelance / ZZP assignment sources for the SEPARATE freelance lane. The candidate has a Dutch sole proprietorship (eenmanszaak) and can invoice, so contract/interim/ZZP work is DESIRED here (the full-time lane's fixed_term/consultancy filters are bypassed for this lane). Scope: Netherlands + NL-billable remote. Roles: data / BI / analytics / business analyst — NOT senior Data Scientist / Data Engineer. Reliability tiers below are honest: 'high' = scraped automatically via a stable endpoint; 'medium' = best-effort public-listing HTML scrape (can break if the site changes); 'manual' = login-gated / anti-bot, registered for reference only — paste a specific public listing URL into `manual_urls` to have the scanner fetch it.",
+  "lane": "freelance",
+  "location_scope": {
+    "note": "Netherlands cities + NL-based remote. DE/TR are out of scope for freelance.",
+    "nl_keywords": ["netherlands", "nederland", " nl", "nl,", "holland", "amsterdam", "rotterdam", "the hague", "den haag", "utrecht", "eindhoven", "groningen", "tilburg", "nijmegen", "haarlem", "arnhem", "delft", "leiden", "randstad", "hilversum", "zwolle", "breda", "'s-hertogenbosch", "den bosch", "amersfoort", "apeldoorn", "almere"],
+    "remote_ok": true,
+    "remote_keywords": ["remote", "thuiswerk", "op afstand", "hybride", "hybrid", "anywhere in the netherlands", "remote (netherlands)", "remote netherlands", "nl remote"]
+  },
+  "roles": [
+    "Data Analyst", "Business Intelligence Analyst", "BI Developer", "Analytics", "Data Analytics",
+    "Business Analyst", "Power BI", "Data Visualisation", "Rapportage", "Data Consultant"
+  ],
+  "linkedin": {
+    "enabled": true,
+    "reliability": "high",
+    "note": "Reuses the existing LinkedIn guest jobs endpoint with the Contract/Temporary job-type filter (f_JT=C,T) over NL locations + a remote pass (f_WT=2). Same code path as the full-time scan — the most reliable freelance source.",
+    "job_types": ["C", "T"],
+    "locations": ["Netherlands", "Amsterdam, Netherlands", "Rotterdam, Netherlands", "Utrecht, Netherlands", "Eindhoven, Netherlands"]
+  },
+  "boards": [
+    {
+      "id": "freelance-nl",
+      "name": "Freelance.nl",
+      "reliability": "medium",
+      "list_url": "https://www.freelance.nl/opdrachten?q=data+analist",
+      "note": "NL'nin en büyük freelance opdracht panolarından. Public opdracht listeleri var; login'siz sınırlı. Best-effort HTML scrape.",
+      "enabled": true
+    },
+    {
+      "id": "hoofdkraan",
+      "name": "Hoofdkraan.nl",
+      "reliability": "medium",
+      "list_url": "https://www.hoofdkraan.nl/opdrachten/?zoekterm=data",
+      "note": "NL freelance opdracht marketplace. Public listeler; best-effort scrape.",
+      "enabled": true
+    },
+    {
+      "id": "onlinewerkers",
+      "name": "Onlinewerkers.nl",
+      "reliability": "medium",
+      "list_url": "https://www.onlinewerkers.nl/opdrachten",
+      "note": "NL ZZP opdracht panosu; best-effort.",
+      "enabled": false
+    }
+  ],
+  "brokers": [
+    {
+      "id": "striive",
+      "name": "Striive (eski Yacht/Brainnet)",
+      "reliability": "manual",
+      "url": "https://intramar.striive.com",
+      "note": "NL'nin en büyük interim/ZZP marketplace'i ama ÇOĞU İLAN LOGIN ARKASINDA. Otomatik taranamaz. Hesabından bir opdracht'ın public linkini manual_urls'e ekleyebilirsin.",
+      "enabled": true
+    },
+    {
+      "id": "jellow",
+      "name": "Jellow",
+      "reliability": "manual",
+      "url": "https://www.jellow.nl",
+      "note": "ZZP matchmaking platformu; hesap/uygulama tabanlı. Otomatik taranamaz.",
+      "enabled": true
+    },
+    {
+      "id": "malt",
+      "name": "Malt",
+      "reliability": "manual",
+      "url": "https://www.malt.nl",
+      "note": "Freelancer marketplace; proje listeleri gated. Otomatik taranamaz.",
+      "enabled": true
+    }
+  ],
+  "global_remote": [
+    {
+      "id": "upwork",
+      "name": "Upwork",
+      "reliability": "manual",
+      "url": "https://www.upwork.com/nx/search/jobs/?q=data%20analyst",
+      "note": "Güçlü anti-bot koruması; guest arama otomatik taranamaz. Sadece 'tüm remote' kapsamında + manuel link ile anlamlı.",
+      "enabled": false
+    },
+    {
+      "id": "toptal",
+      "name": "Toptal",
+      "reliability": "manual",
+      "url": "https://www.toptal.com",
+      "note": "Screening-gated network; ilan taranamaz. Kayıt amaçlı.",
+      "enabled": false
+    }
+  ],
+  "manual_urls": []
+}

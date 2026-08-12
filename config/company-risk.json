@@ -1,0 +1,22 @@
+{
+  "_comment": "Layoff / instability risk signals. `companies` is matched (case-insensitive substring) against the posting company at load time; the highest-matching entry wins. `keywords_high` / `keywords_medium` are matched against the report text + tracker notes (fixed-term, backfill, restructuring…) so a risky *posting* is flagged even at a healthy company. The dashboard shows a badge and offers a 'hide high-risk' filter. Extend freely — this is your layoff-aversion thesis made into data. Sources should be datestamped so stale flags can be pruned.",
+  "companies": {
+    "Alfen": { "level": "high", "reason": "2024 profit warnings + sharp stock decline; cost-cutting / reorganisation reported", "source": "public financials", "date": "2026-07" },
+    "Nyrstar": { "level": "high", "reason": "European zinc-smelter curtailments due to energy costs; production halts", "source": "public news", "date": "2026-07" },
+    "NET-A-PORTER": { "level": "high", "reason": "YNAP sold by Richemont into Mytheresa/LuxExperience — merger integration + layoff risk", "source": "career-ops re-eval 2026-07", "date": "2026-07" },
+    "YOOX": { "level": "high", "reason": "Part of YNAP — same distressed merger integration risk", "source": "career-ops re-eval 2026-07", "date": "2026-07" },
+    "Mytheresa": { "level": "medium", "reason": "Absorbing distressed YNAP; integration turbulence", "source": "career-ops re-eval 2026-07", "date": "2026-07" },
+    "Sandisk": { "level": "medium", "reason": "Recent Western Digital spin-off; cyclical memory market", "source": "career-ops re-eval 2026-07", "date": "2026-07" },
+    "Ruby Labs": { "level": "medium", "reason": "Contractor-model subscription apps; volatile, no employment stability", "source": "career-ops re-eval 2026-07", "date": "2026-07" }
+  },
+  "_keywords_note": "high = unambiguous employment-instability phrasing only. Words like 'restructuring'/'reorganisation'/'turnaround' were intentionally REMOVED because in data-role JDs they usually mean *data* restructuring, not company layoffs — they mislabelled healthy employers (e.g. Adyen). Keep this list precise.",
+  "keywords_high": [
+    "fixed-term", "fixed term", "temporary contract", "maternity cover", "maternity leave cover",
+    "parental leave cover", "backfill", "back-fill", "6-month contract", "6 month contract",
+    "hiring freeze", "cost reduction programme", "in administration", "collective redundanc"
+  ],
+  "keywords_medium": [
+    "freelance", "secondment", "detachering", "pre-seed", "seed stage", "series a", "early-stage startup",
+    "runway", "bootstrapped", "contract-to-hire", "project-based"
+  ]
+}

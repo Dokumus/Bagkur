@@ -1,0 +1,60 @@
+# Secrets — NEVER commit
+.env
+.env.*
+*.key
+
+# Personal data (user fills these)
+data/applications.md
+data/applications.md.bak
+data/pipeline.md
+data/scan-history.tsv
+data/freelance-pipeline.md
+data/freelance-scan-history.tsv
+data/resume.md
+data/liveness.json
+data/outcomes.json
+data/posted-dates.json
+data/rejected.tsv
+config/locations.json
+config/sources.json
+config/li-companies.json
+config/ats-discovery.json
+reports/*.md
+!reports/.gitkeep
+# JD cache / chunk artifacts (contain scraped job descriptions)
+batch/jd-cache.json
+batch/jd-chunk-*.json
+batch/jd-new-*.json
+batch/tr-*.json
+batch/tr-summary.json
+batch/tracker-additions/merged/
+output/*
+!output/.gitkeep
+batch/logs/*
+!batch/logs/.gitkeep
+batch/batch-state.tsv
+batch/batch-input.tsv
+batch/tracker-additions/*.tsv
+!batch/tracker-additions/.gitkeep
+jds/*
+!jds/.gitkeep
+*.bak
+
+# User config and customization (never auto-updated)
+
+# Generated
+.resolved-prompt-*
+node_modules/
+
+# OS
+.DS_Store
+*.mov
+*.mp4
+
+# Claude Code local
+.claude/settings.local.json
+.claude/memory/
+career-dashboard
+
+# liveness cron logları
+logs/

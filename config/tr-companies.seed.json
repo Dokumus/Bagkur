@@ -1,0 +1,1818 @@
+{
+  "_comment": "Türkiye takip listesi tohum verisi (kullanıcı tablosundan). resolve-tr-careers.mjs bu dosyayı okur, her firmanın aday kariyer URL'lerini HTTP ile dener ve doğrulananı portals.yml'ye yazılmak üzere config/tr-companies.resolved.json'a kaydeder. domains: kariyer yolu kalıpları bu alan adları üzerinde denenir. ats: doğrudan denenecek tam URL'ler (önce bunlar denenir).",
+  "companies": [
+    {
+      "name": "Yapı Kredi Teknoloji",
+      "city": "Kocaeli",
+      "district": "Çayırova",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "yapikrediteknoloji.com",
+        "yapikredi.com.tr"
+      ]
+    },
+    {
+      "name": "Logo Yazılım",
+      "city": "Kocaeli",
+      "district": "Gebze (Genel Merkez)",
+      "category": "Kurumsal - Yazılım Ürün",
+      "domains": [
+        "logo.com.tr"
+      ]
+    },
+    {
+      "name": "Akbank Bankacılık Merkezi (ABM)",
+      "city": "Kocaeli",
+      "district": "Gebze / Çayırova",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "akbank.com"
+      ]
+    },
+    {
+      "name": "IBTech (QNB Finansbank)",
+      "city": "Kocaeli",
+      "district": "TÜBİTAK MAM Gebze - Serbest Bölge",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "ibtech.com.tr",
+        "qnb.com.tr"
+      ]
+    },
+    {
+      "name": "Brisa (Bridgestone-Sabancı)",
+      "city": "Kocaeli",
+      "district": "İzmit",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "brisa.com.tr"
+      ]
+    },
+    {
+      "name": "Borusan Cat (Borusan Makina)",
+      "city": "Kocaeli",
+      "district": "Gebze",
+      "category": "Kurumsal - Sanayi/Dağıtım",
+      "domains": [
+        "borusancat.com",
+        "borusan.com"
+      ]
+    },
+    {
+      "name": "SEDAŞ (Sakarya EDAŞ)",
+      "city": "Kocaeli",
+      "district": "Kocaeli/Sakarya/Bolu/Düzce",
+      "category": "Kurumsal - Enerji Dağıtım",
+      "domains": [
+        "sedas.com"
+      ]
+    },
+    {
+      "name": "Bilişim Vadisi (kampüs)",
+      "city": "Kocaeli",
+      "district": "Muallimköy, Gebze",
+      "category": "Teknopark (havuz)",
+      "domains": [
+        "bilisimvadisi.com.tr"
+      ]
+    },
+    {
+      "name": "ADASTEC",
+      "city": "Kocaeli",
+      "district": "Bilişim Vadisi",
+      "category": "Startup",
+      "domains": [
+        "adastec.com"
+      ]
+    },
+    {
+      "name": "Appcircle",
+      "city": "Kocaeli",
+      "district": "Bilişim Vadisi",
+      "category": "Startup",
+      "domains": [
+        "appcircle.io"
+      ]
+    },
+    {
+      "name": "Berqnet",
+      "city": "Kocaeli",
+      "district": "GOSB Teknopark",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "berqnet.com"
+      ]
+    },
+    {
+      "name": "Büyütech",
+      "city": "Kocaeli",
+      "district": "Gebze",
+      "category": "Startup",
+      "domains": [
+        "buyutech.com.tr",
+        "buyutech.com"
+      ]
+    },
+    {
+      "name": "Şişecam Bilim ve Teknoloji Merkezi",
+      "city": "Kocaeli",
+      "district": "Çayırova",
+      "category": "Kurumsal - Ar-Ge",
+      "domains": [
+        "sisecam.com.tr",
+        "sisecam.com"
+      ]
+    },
+    {
+      "name": "TÜBİTAK BİLGEM / B3LAB",
+      "city": "Kocaeli",
+      "district": "Gebze",
+      "category": "Kamu Araştırma",
+      "domains": [
+        "bilgem.tubitak.gov.tr"
+      ]
+    },
+    {
+      "name": "Hyundai Assan",
+      "city": "Kocaeli",
+      "district": "İzmit",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "hyundaiassan.com",
+        "hyundai.com.tr"
+      ]
+    },
+    {
+      "name": "Anadolu Isuzu",
+      "city": "Kocaeli",
+      "district": "Şekerpınar",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "anadoluisuzu.com.tr"
+      ]
+    },
+    {
+      "name": "GOSB Teknopark (kiracı havuzu)",
+      "city": "Kocaeli",
+      "district": "Gebze OSB",
+      "category": "Teknopark (havuz)",
+      "domains": [
+        "gosbteknopark.com"
+      ]
+    },
+    {
+      "name": "Kocaeli Üni. Teknopark (kiracı havuzu)",
+      "city": "Kocaeli",
+      "district": "Başiskele",
+      "category": "Teknopark (havuz)",
+      "domains": [
+        "kocaeliteknopark.com.tr",
+        "kouteknopark.com.tr"
+      ]
+    },
+    {
+      "name": "Türk Telekom (Genel Müdürlük)",
+      "city": "Ankara",
+      "district": "Altındağ",
+      "category": "Kurumsal - Telekom",
+      "domains": [
+        "turktelekom.com.tr"
+      ]
+    },
+    {
+      "name": "İnnova Bilişim (TT Grubu)",
+      "city": "Ankara",
+      "district": "ODTÜ Teknokent +",
+      "category": "Kurumsal - Sistem Entegratör",
+      "domains": [
+        "innova.com.tr"
+      ]
+    },
+    {
+      "name": "Ziraat Teknoloji",
+      "city": "Ankara",
+      "district": "Ankara kampüs",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "ziraatteknoloji.com"
+      ]
+    },
+    {
+      "name": "Halkbank",
+      "city": "Ankara",
+      "district": "Genel Müdürlük",
+      "category": "Kurumsal - Banka",
+      "domains": [
+        "halkbank.com.tr"
+      ]
+    },
+    {
+      "name": "VakıfBank",
+      "city": "Ankara",
+      "district": "Genel Müdürlük",
+      "category": "Kurumsal - Banka",
+      "domains": [
+        "vakifbank.com.tr"
+      ]
+    },
+    {
+      "name": "Ziraat Bankası",
+      "city": "Ankara",
+      "district": "Altındağ GM",
+      "category": "Kurumsal - Banka",
+      "domains": [
+        "ziraatbank.com.tr"
+      ]
+    },
+    {
+      "name": "Başkent EDAŞ / Enerjisa",
+      "city": "Ankara",
+      "district": "Ankara +6 il",
+      "category": "Kurumsal - Enerji Dağıtım",
+      "domains": [
+        "baskentedas.com.tr",
+        "enerjisa.com.tr"
+      ]
+    },
+    {
+      "name": "TURBOARD / E-Kalite Yazılım",
+      "city": "Ankara",
+      "district": "Next Level + Çankaya Ar-Ge",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "turboard.com",
+        "e-kalite.com"
+      ]
+    },
+    {
+      "name": "Turkcell Global Bilgi Ankara",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Kurumsal - Telekom BPO",
+      "domains": [
+        "globalbilgi.com.tr"
+      ]
+    },
+    {
+      "name": "ikas",
+      "city": "Ankara",
+      "district": "Ankara + Londra/Dubai/Riyad",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "ikas.com"
+      ]
+    },
+    {
+      "name": "Onlayer",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "onlayer.com"
+      ]
+    },
+    {
+      "name": "TeklifimGelsin",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "teklifimgelsin.com"
+      ]
+    },
+    {
+      "name": "Evreka",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "evreka.co"
+      ]
+    },
+    {
+      "name": "Inavitas",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "inavitas.com"
+      ]
+    },
+    {
+      "name": "Enhencer",
+      "city": "Ankara",
+      "district": "ODTÜ Teknokent",
+      "category": "Startup",
+      "domains": [
+        "enhencer.com"
+      ]
+    },
+    {
+      "name": "Servislet",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "servislet.com"
+      ]
+    },
+    {
+      "name": "Kimola",
+      "city": "Ankara",
+      "district": "Bilkent Cyberpark + SF",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "kimola.com"
+      ]
+    },
+    {
+      "name": "SmartAlpha",
+      "city": "Ankara",
+      "district": "ODTÜ Teknokent",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "smartalpha.ai",
+        "smartalpha.com.tr"
+      ]
+    },
+    {
+      "name": "Picus Security",
+      "city": "Ankara",
+      "district": "ODTÜ Teknokent doğumlu",
+      "category": "Scaleup",
+      "domains": [
+        "picussecurity.com"
+      ]
+    },
+    {
+      "name": "Loop Games",
+      "city": "Ankara",
+      "district": "Çankaya / Hacettepe",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "loopgames.net",
+        "loopgames.com"
+      ]
+    },
+    {
+      "name": "UDO (eski UDO Games)",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "udogames.com",
+        "udo.games"
+      ]
+    },
+    {
+      "name": "TaleWorlds Entertainment",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "taleworlds.com"
+      ]
+    },
+    {
+      "name": "Frantic Games",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "franticgames.com"
+      ]
+    },
+    {
+      "name": "Netcad Yazılım",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Yerleşik Yazılım (BİST)",
+      "domains": [
+        "netcad.com",
+        "netcad.com.tr"
+      ]
+    },
+    {
+      "name": "Başarsoft",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "basarsoft.com.tr"
+      ]
+    },
+    {
+      "name": "Fonet Bilgi Teknolojileri",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Yerleşik Yazılım (BİST)",
+      "domains": [
+        "fonet.com.tr"
+      ]
+    },
+    {
+      "name": "Mia Teknoloji",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Yerleşik Yazılım (BİST)",
+      "domains": [
+        "miateknoloji.com"
+      ]
+    },
+    {
+      "name": "Cybersoft",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "cybersoft.com.tr"
+      ]
+    },
+    {
+      "name": "Sestek",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "sestek.com"
+      ]
+    },
+    {
+      "name": "Mobile Action",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "mobileaction.co"
+      ]
+    },
+    {
+      "name": "OpenZeka",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "openzeka.com"
+      ]
+    },
+    {
+      "name": "Barikat Siber Güvenlik",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "barikat.com.tr"
+      ]
+    },
+    {
+      "name": "OPLOG",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "oplog.com",
+        "oplog.io"
+      ]
+    },
+    {
+      "name": "Rapsodo",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "rapsodo.com"
+      ]
+    },
+    {
+      "name": "TÜİK (Türkiye İstatistik Kurumu)",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Kamu",
+      "domains": [
+        "tuik.gov.tr"
+      ]
+    },
+    {
+      "name": "TÜBİTAK ULAKBİM / BİLGEM YTE",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Kamu Araştırma",
+      "domains": [
+        "ulakbim.tubitak.gov.tr",
+        "yte.bilgem.tubitak.gov.tr"
+      ]
+    },
+    {
+      "name": "TÜRKSAT",
+      "city": "Ankara",
+      "district": "Gölbaşı",
+      "category": "Kamu / KİT",
+      "domains": [
+        "turksat.com.tr"
+      ]
+    },
+    {
+      "name": "Remedi",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Kamu BT Yüklenici",
+      "domains": [
+        "remedi.com.tr"
+      ]
+    },
+    {
+      "name": "BİTES Savunma (HAVELSAN grubu)",
+      "city": "Ankara",
+      "district": "Ankara",
+      "category": "Savunma - Yazılım",
+      "domains": [
+        "bites.com.tr"
+      ]
+    },
+    {
+      "name": "Arkas Holding",
+      "city": "İzmir",
+      "district": "İzmir (Genel Merkez)",
+      "category": "Kurumsal - Lojistik",
+      "domains": [
+        "arkas.com.tr",
+        "arkasholding.com.tr"
+      ]
+    },
+    {
+      "name": "Yaşar Holding / Yaşar Bilgi",
+      "city": "İzmir",
+      "district": "Bornova",
+      "category": "Kurumsal - FMCG + BT",
+      "domains": [
+        "yasar.com.tr",
+        "yasarbilgi.com.tr"
+      ]
+    },
+    {
+      "name": "SOCAR Türkiye (Petkim + STAR Rafineri)",
+      "city": "İzmir",
+      "district": "Aliağa",
+      "category": "Kurumsal - Enerji",
+      "domains": [
+        "socar.com.tr",
+        "petkim.com.tr"
+      ]
+    },
+    {
+      "name": "GDZ EDAŞ / Gediz Elektrik Perakende",
+      "city": "İzmir",
+      "district": "İzmir, Manisa",
+      "category": "Kurumsal - Enerji Dağıtım",
+      "domains": [
+        "gdzelektrik.com.tr",
+        "gediz.com.tr"
+      ]
+    },
+    {
+      "name": "Norm Holding / Norm Digital",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Kurumsal - Sanayi + Dijital",
+      "domains": [
+        "normholding.com",
+        "normdigital.com"
+      ]
+    },
+    {
+      "name": "Kentkart (Kent Kart Ege Elektronik)",
+      "city": "İzmir",
+      "district": "Konak",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "kentkart.com",
+        "kentkart.com.tr"
+      ]
+    },
+    {
+      "name": "Sompo Teknoloji",
+      "city": "İzmir",
+      "district": "Teknopark İzmir",
+      "category": "Kurumsal - Sigorta Teknoloji",
+      "domains": [
+        "sompoteknoloji.com",
+        "sompo.com.tr"
+      ]
+    },
+    {
+      "name": "Odine Solutions / OdineLabs",
+      "city": "İzmir",
+      "district": "Teknopark İzmir",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "odine.com",
+        "odinesolutions.com"
+      ]
+    },
+    {
+      "name": "Argela Technologies",
+      "city": "İzmir",
+      "district": "Teknopark İzmir",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "argela.com.tr",
+        "argela.com"
+      ]
+    },
+    {
+      "name": "AirTies",
+      "city": "İzmir",
+      "district": "Teknopark İzmir",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "airties.com"
+      ]
+    },
+    {
+      "name": "Etiya",
+      "city": "İzmir",
+      "district": "Teknopark İzmir",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "etiya.com"
+      ]
+    },
+    {
+      "name": "HubX",
+      "city": "İzmir",
+      "district": "Konak + Teknopark İzmir AI",
+      "category": "Startup/Scaleup",
+      "domains": [
+        "hubx.com",
+        "hubx.co"
+      ]
+    },
+    {
+      "name": "Apollo IoT",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Startup",
+      "domains": [
+        "apolloiot.com",
+        "apolloiot.com.tr"
+      ]
+    },
+    {
+      "name": "Blueit",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Startup",
+      "domains": [
+        "blueit.com.tr",
+        "blueit.co"
+      ]
+    },
+    {
+      "name": "Werover",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Startup",
+      "domains": [
+        "werover.com"
+      ]
+    },
+    {
+      "name": "PulpoAR",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Startup",
+      "domains": [
+        "pulpoar.com"
+      ]
+    },
+    {
+      "name": "HrPanda",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Startup",
+      "domains": [
+        "hrpanda.co",
+        "hrpanda.com"
+      ]
+    },
+    {
+      "name": "Myth AI",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Startup",
+      "domains": [
+        "mythai.co",
+        "myth.ai"
+      ]
+    },
+    {
+      "name": "Kredibilite",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Startup",
+      "domains": [
+        "kredibilite.com",
+        "kredibilite.com.tr"
+      ]
+    },
+    {
+      "name": "adesso Turkey",
+      "city": "İzmir",
+      "district": "Teknopark İzmir",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "adesso.com.tr"
+      ]
+    },
+    {
+      "name": "Hugo Boss Tekstil",
+      "city": "İzmir",
+      "district": "Torbalı",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "hugoboss.com"
+      ]
+    },
+    {
+      "name": "Sun Tekstil",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "suntekstil.com.tr"
+      ]
+    },
+    {
+      "name": "Borda Technology",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "bordatech.com"
+      ]
+    },
+    {
+      "name": "Somera",
+      "city": "İzmir",
+      "district": "Teknopark İzmir",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "somera.com.tr",
+        "somera.io"
+      ]
+    },
+    {
+      "name": "Connected Wise",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Startup",
+      "domains": [
+        "connectedwise.com"
+      ]
+    },
+    {
+      "name": "İzmir İnovasyon ve Teknoloji A.Ş. (İZTEK)",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Kamu / Belediye Şirketi",
+      "domains": [
+        "iztek.com.tr",
+        "iztek.istanbul"
+      ]
+    },
+    {
+      "name": "MagicLab",
+      "city": "İzmir",
+      "district": "İzmir lokasyonlu ilan",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "magiclab.co",
+        "magiclab.com.tr"
+      ]
+    },
+    {
+      "name": "Turkcell Global Bilgi İzmir",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Kurumsal - Telekom BPO",
+      "domains": [
+        "globalbilgi.com.tr"
+      ]
+    },
+    {
+      "name": "Philip Morris / Philsa",
+      "city": "İzmir",
+      "district": "Torbalı",
+      "category": "Kurumsal - FMCG",
+      "domains": [
+        "pmi.com",
+        "philsa.com.tr"
+      ]
+    },
+    {
+      "name": "CMS Jant ve Makina",
+      "city": "İzmir",
+      "district": "Çiğli / Gaziemir",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "cms.com.tr"
+      ]
+    },
+    {
+      "name": "Univera",
+      "city": "İzmir",
+      "district": "İzmir",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "univera.com.tr"
+      ]
+    },
+    {
+      "name": "Vestel / Schneider Electric",
+      "city": "İzmir",
+      "district": "Manisa (İzmir'den günlük)",
+      "category": "Kurumsal - Sanayi (BİST)",
+      "domains": [
+        "vestel.com.tr",
+        "se.com"
+      ]
+    },
+    {
+      "name": "TUI Group",
+      "city": "Antalya",
+      "district": "Antalya (+ TR/HR/BG/DE/UK)",
+      "category": "Kurumsal - Turizm",
+      "domains": [
+        "tuigroup.com",
+        "careers.tui.com"
+      ]
+    },
+    {
+      "name": "Coral Travel Group / OTI Holding",
+      "city": "Antalya",
+      "district": "Aksu (Genel Merkez)",
+      "category": "Kurumsal - Turizm",
+      "domains": [
+        "otiholding.com",
+        "coraltravel.com"
+      ]
+    },
+    {
+      "name": "Elektraweb",
+      "city": "Antalya",
+      "district": "Antalya (GM şehri)",
+      "category": "Startup",
+      "domains": [
+        "elektraweb.com"
+      ]
+    },
+    {
+      "name": "AEDAŞ (Akdeniz EDAŞ)",
+      "city": "Antalya",
+      "district": "Antalya (GM) / Burdur",
+      "category": "Kurumsal - Enerji Dağıtım",
+      "domains": [
+        "akdenizedas.com.tr",
+        "aedas.com.tr"
+      ]
+    },
+    {
+      "name": "Barut Hotels",
+      "city": "Antalya",
+      "district": "Muratpaşa (Genel Merkez)",
+      "category": "Kurumsal - Turizm",
+      "domains": [
+        "baruthotels.com"
+      ]
+    },
+    {
+      "name": "HBX Group (Hotelbeds) / WebBeds",
+      "city": "Antalya",
+      "district": "Antalya",
+      "category": "Kurumsal - Turizm Tech",
+      "domains": [
+        "hbxgroup.com",
+        "hotelbeds.com"
+      ]
+    },
+    {
+      "name": "Reload",
+      "city": "Antalya",
+      "district": "Antalya",
+      "category": "Startup",
+      "domains": [
+        "reload.com.tr",
+        "reloadgames.com"
+      ]
+    },
+    {
+      "name": "Fraport TAV Antalya",
+      "city": "Antalya",
+      "district": "Antalya Havalimanı",
+      "category": "Kurumsal - Havacılık",
+      "domains": [
+        "fraport-tav.com",
+        "tav.aero"
+      ]
+    },
+    {
+      "name": "Anex Tour",
+      "city": "Antalya",
+      "district": "Antalya",
+      "category": "Kurumsal - Turizm",
+      "domains": [
+        "anextour.com.tr",
+        "anextour.com"
+      ]
+    },
+    {
+      "name": "Enza Zaden",
+      "city": "Antalya",
+      "district": "Serik",
+      "category": "Kurumsal - Tarım Ar-Ge",
+      "domains": [
+        "enzazaden.com"
+      ]
+    },
+    {
+      "name": "Antalya Teknokent (kiracı havuzu)",
+      "city": "Antalya",
+      "district": "Akdeniz Üni.",
+      "category": "Teknokent (havuz)",
+      "domains": [
+        "antalyateknokent.com.tr"
+      ]
+    },
+    {
+      "name": "TourisTech (Antalya Bilim Üni.)",
+      "city": "Antalya",
+      "district": "Antalya",
+      "category": "Kuluçka (havuz)",
+      "domains": [
+        "touristech.com.tr",
+        "antalya.edu.tr"
+      ]
+    },
+    {
+      "name": "Antalya OSB Teknopark (kiracı havuzu)",
+      "city": "Antalya",
+      "district": "Antalya OSB",
+      "category": "Teknopark (havuz)",
+      "domains": [
+        "aosbteknopark.com.tr",
+        "antalyaosb.org.tr"
+      ]
+    },
+    {
+      "name": "Bentego Teknoloji",
+      "city": "Eskişehir",
+      "district": "ATAP Teknopark",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "bentego.com",
+        "bentego.com.tr"
+      ]
+    },
+    {
+      "name": "BilTAY Teknoloji",
+      "city": "Eskişehir",
+      "district": "Eskişehir (Genel Merkez)",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "biltay.com.tr",
+        "biltay.com"
+      ]
+    },
+    {
+      "name": "Eti Gıda (Eti Bisküvi)",
+      "city": "Eskişehir",
+      "district": "Eskişehir (Genel Merkez)",
+      "category": "Kurumsal - FMCG",
+      "domains": [
+        "etietti.com",
+        "eti.com.tr"
+      ]
+    },
+    {
+      "name": "OEDAŞ (Osmangazi EDAŞ)",
+      "city": "Eskişehir",
+      "district": "Eskişehir (GM) +4 il",
+      "category": "Kurumsal - Enerji Dağıtım",
+      "domains": [
+        "oedas.com.tr"
+      ]
+    },
+    {
+      "name": "TEI - TUSAŞ Motor Sanayii",
+      "city": "Eskişehir",
+      "district": "Eskişehir OSB Teknoparkı",
+      "category": "Kurumsal - Havacılık",
+      "domains": [
+        "tei.com.tr"
+      ]
+    },
+    {
+      "name": "Alpata Teknoloji",
+      "city": "Eskişehir",
+      "district": "Eskişehir OSB Teknoparkı",
+      "category": "Startup",
+      "domains": [
+        "alpata.com.tr",
+        "alpata.com"
+      ]
+    },
+    {
+      "name": "ÇözümTR Ödeme Sistemleri",
+      "city": "Eskişehir",
+      "district": "ATAP",
+      "category": "Startup",
+      "domains": [
+        "cozumtr.com",
+        "cozumtr.com.tr"
+      ]
+    },
+    {
+      "name": "TÜRASAŞ Eskişehir (eski TÜLOMSAŞ)",
+      "city": "Eskişehir",
+      "district": "Eskişehir",
+      "category": "Kamu / KİT",
+      "domains": [
+        "turasas.gov.tr"
+      ]
+    },
+    {
+      "name": "Anadolu Üniversitesi - AÖF",
+      "city": "Eskişehir",
+      "district": "Eskişehir",
+      "category": "Üniversite",
+      "domains": [
+        "anadolu.edu.tr"
+      ]
+    },
+    {
+      "name": "Arçelik Eskişehir",
+      "city": "Eskişehir",
+      "district": "Eskişehir",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "arcelikglobal.com",
+        "arcelik.com.tr"
+      ]
+    },
+    {
+      "name": "Ford Otosan Eskişehir",
+      "city": "Eskişehir",
+      "district": "Eskişehir",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "fordotosan.com.tr"
+      ]
+    },
+    {
+      "name": "Alp Havacılık",
+      "city": "Eskişehir",
+      "district": "Eskişehir",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "alphavacilik.com.tr",
+        "alp.com.tr"
+      ]
+    },
+    {
+      "name": "Çimsa",
+      "city": "Eskişehir",
+      "district": "Eskişehir",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "cimsa.com.tr"
+      ]
+    },
+    {
+      "name": "ATAP / Anadolu Teknopark (kiracı havuzu)",
+      "city": "Eskişehir",
+      "district": "Anadolu Üni. + EOSB",
+      "category": "Teknopark (havuz)",
+      "domains": [
+        "anadoluteknopark.com.tr",
+        "atap.com.tr"
+      ]
+    },
+    {
+      "name": "YEDAŞ (Yeşilırmak EDAŞ)",
+      "city": "Samsun",
+      "district": "Samsun (GM) +4 il",
+      "category": "Kurumsal - Enerji Dağıtım",
+      "domains": [
+        "yedas.com.tr"
+      ]
+    },
+    {
+      "name": "EPAM Türkiye",
+      "city": "Uzaktan",
+      "district": "Türkiye (tüm şehirler)",
+      "category": "Global Delivery",
+      "domains": [
+        "epam.com"
+      ]
+    },
+    {
+      "name": "Baykar (Samsun üretim üssü)",
+      "city": "Samsun",
+      "district": "Tekkeköy",
+      "category": "Kurumsal - Savunma",
+      "domains": [
+        "baykartech.com"
+      ]
+    },
+    {
+      "name": "MKE Samsun",
+      "city": "Samsun",
+      "district": "Çarşamba",
+      "category": "Kurumsal - Savunma",
+      "domains": [
+        "mke.gov.tr"
+      ]
+    },
+    {
+      "name": "Yeşilyurt Demir Çelik ve Liman",
+      "city": "Samsun",
+      "district": "Samsun",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "yesilyurtdemircelik.com.tr",
+        "yesilyurtdemircelik.com"
+      ]
+    },
+    {
+      "name": "Toros Tarım (Tekfen)",
+      "city": "Samsun",
+      "district": "Samsun tesisi",
+      "category": "Kurumsal - Sanayi",
+      "domains": [
+        "torostarim.com.tr",
+        "tekfen.com.tr"
+      ]
+    },
+    {
+      "name": "Ulusoy Un",
+      "city": "Samsun",
+      "district": "Samsun",
+      "category": "Kurumsal - Sanayi (BİST)",
+      "domains": [
+        "ulusoyun.com.tr",
+        "ulusoyun.com"
+      ]
+    },
+    {
+      "name": "Cengiz Enerji Samsun",
+      "city": "Samsun",
+      "district": "Samsun",
+      "category": "Kurumsal - Enerji",
+      "domains": [
+        "cengizenerji.com.tr",
+        "cengizholding.com.tr"
+      ]
+    },
+    {
+      "name": "EİSTATİSTİK (istabot.com)",
+      "city": "Samsun",
+      "district": "Samsun Teknokent",
+      "category": "Startup",
+      "domains": [
+        "istabot.com",
+        "eistatistik.com"
+      ]
+    },
+    {
+      "name": "İSTMER Veri Analizi",
+      "city": "Samsun",
+      "district": "Samsun Teknokent",
+      "category": "Danışmanlık",
+      "domains": [
+        "istmer.com",
+        "istmer.com.tr"
+      ]
+    },
+    {
+      "name": "ECONIX Research",
+      "city": "Samsun",
+      "district": "Samsun Teknopark",
+      "category": "Araştırma",
+      "domains": [
+        "econix.com.tr",
+        "econixresearch.com"
+      ]
+    },
+    {
+      "name": "Samsun Teknopark (kiracı havuzu)",
+      "city": "Samsun",
+      "district": "Atakum + 19 Mayıs",
+      "category": "Teknopark (havuz)",
+      "domains": [
+        "samsunteknopark.com.tr"
+      ]
+    },
+    {
+      "name": "Papara",
+      "city": "Uzaktan",
+      "district": "Türkiye geneli",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "papara.com"
+      ]
+    },
+    {
+      "name": "Good Job Games",
+      "city": "Uzaktan",
+      "district": "İstanbul merkezli, full remote",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "goodjobgames.com"
+      ]
+    },
+    {
+      "name": "Lyrebird Studio",
+      "city": "Uzaktan",
+      "district": "İstanbul merkezli, TR remote",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "lyrebirdstudio.net",
+        "lyrebirdstudio.com"
+      ]
+    },
+    {
+      "name": "Voodoo",
+      "city": "Uzaktan",
+      "district": "Worldwide remote",
+      "category": "Global Startup",
+      "domains": [
+        "voodoo.io"
+      ]
+    },
+    {
+      "name": "Ruby Labs",
+      "city": "Uzaktan",
+      "district": "Worldwide remote",
+      "category": "Global Startup",
+      "domains": [
+        "rubylabs.com"
+      ]
+    },
+    {
+      "name": "TapNation",
+      "city": "Uzaktan",
+      "district": "Worldwide remote",
+      "category": "Global Startup",
+      "domains": [
+        "tap-nation.io",
+        "tapnation.io"
+      ]
+    },
+    {
+      "name": "Trust Wallet",
+      "city": "Uzaktan",
+      "district": "Worldwide remote",
+      "category": "Global Startup",
+      "domains": [
+        "trustwallet.com"
+      ]
+    },
+    {
+      "name": "Garanti BBVA Teknoloji",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "garantibbvateknoloji.com.tr",
+        "garantibbva.com.tr"
+      ]
+    },
+    {
+      "name": "Softtech (İş Bankası)",
+      "city": "İstanbul",
+      "district": "Tuzla / Maslak",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "softtech.com.tr"
+      ]
+    },
+    {
+      "name": "Intertech (DenizBank)",
+      "city": "İstanbul",
+      "district": "Esentepe",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "intertech.com.tr"
+      ]
+    },
+    {
+      "name": "Architecht (Kuveyt Türk)",
+      "city": "İstanbul",
+      "district": "Kartal",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "architecht.com"
+      ]
+    },
+    {
+      "name": "Albaraka Tech Global",
+      "city": "İstanbul",
+      "district": "Ümraniye",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "albarakatech.com"
+      ]
+    },
+    {
+      "name": "ING Hub Türkiye",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": [
+        "inghubs.com",
+        "ing.com.tr"
+      ]
+    },
+    {
+      "name": "Türkiye İş Bankası",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Kurumsal - Banka",
+      "domains": [
+        "isbank.com.tr"
+      ]
+    },
+    {
+      "name": "QNB Türkiye",
+      "city": "İstanbul",
+      "district": "Esentepe",
+      "category": "Kurumsal - Banka",
+      "domains": [
+        "qnb.com.tr"
+      ]
+    },
+    {
+      "name": "TEB (Türk Ekonomi Bankası)",
+      "city": "İstanbul",
+      "district": "Ümraniye",
+      "category": "Kurumsal - Banka",
+      "domains": [
+        "teb.com.tr"
+      ]
+    },
+    {
+      "name": "Fibabanka",
+      "city": "İstanbul",
+      "district": "Esentepe",
+      "category": "Kurumsal - Banka",
+      "domains": [
+        "fibabanka.com.tr"
+      ]
+    },
+    {
+      "name": "iyzico",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Fintech",
+      "domains": [
+        "iyzico.com"
+      ]
+    },
+    {
+      "name": "Param",
+      "city": "İstanbul",
+      "district": "Ataşehir",
+      "category": "Fintech",
+      "domains": [
+        "param.com.tr"
+      ]
+    },
+    {
+      "name": "Paycell (Turkcell)",
+      "city": "İstanbul",
+      "district": "Maltepe",
+      "category": "Fintech",
+      "domains": [
+        "paycell.com.tr"
+      ]
+    },
+    {
+      "name": "Colendi",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Fintech",
+      "domains": [
+        "colendi.com"
+      ]
+    },
+    {
+      "name": "Midas",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Fintech",
+      "domains": [
+        "getmidas.com"
+      ]
+    },
+    {
+      "name": "Craftgate",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Fintech",
+      "domains": [
+        "craftgate.io"
+      ]
+    },
+    {
+      "name": "Trendyol",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "E-ticaret / Scaleup",
+      "domains": [
+        "trendyol.com",
+        "careers.trendyol.com"
+      ]
+    },
+    {
+      "name": "Hepsiburada",
+      "city": "İstanbul",
+      "district": "Kozyatağı",
+      "category": "E-ticaret (NASDAQ)",
+      "domains": [
+        "hepsiburada.com"
+      ]
+    },
+    {
+      "name": "Getir",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Scaleup / Teslimat",
+      "domains": [
+        "getir.com"
+      ]
+    },
+    {
+      "name": "Yemeksepeti",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "E-ticaret / Teslimat",
+      "domains": [
+        "yemeksepeti.com"
+      ]
+    },
+    {
+      "name": "Migros Ticaret",
+      "city": "İstanbul",
+      "district": "Ataşehir",
+      "category": "Perakende (BİST)",
+      "domains": [
+        "migroskurumsal.com",
+        "migros.com.tr"
+      ]
+    },
+    {
+      "name": "CarrefourSA",
+      "city": "İstanbul",
+      "district": "Ataşehir",
+      "category": "Perakende (BİST)",
+      "domains": [
+        "carrefoursa.com"
+      ]
+    },
+    {
+      "name": "n11.com",
+      "city": "İstanbul",
+      "district": "Ümraniye",
+      "category": "E-ticaret",
+      "domains": [
+        "n11.com"
+      ]
+    },
+    {
+      "name": "Çiçeksepeti",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "E-ticaret",
+      "domains": [
+        "ciceksepeti.com"
+      ]
+    },
+    {
+      "name": "sahibinden.com",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "İnternet / Pazar Yeri",
+      "domains": [
+        "sahibinden.com"
+      ]
+    },
+    {
+      "name": "Modanisa",
+      "city": "İstanbul",
+      "district": "Ümraniye",
+      "category": "E-ticaret",
+      "domains": [
+        "modanisa.com"
+      ]
+    },
+    {
+      "name": "arabam.com",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "İnternet / Pazar Yeri",
+      "domains": [
+        "arabam.com"
+      ]
+    },
+    {
+      "name": "LC Waikiki",
+      "city": "İstanbul",
+      "district": "Esenyurt",
+      "category": "Perakende",
+      "domains": [
+        "lcwaikiki.com"
+      ]
+    },
+    {
+      "name": "DeFacto",
+      "city": "İstanbul",
+      "district": "Esenyurt",
+      "category": "Perakende",
+      "domains": [
+        "defacto.com.tr"
+      ]
+    },
+    {
+      "name": "Boyner Grup",
+      "city": "İstanbul",
+      "district": "Eyüpsultan",
+      "category": "Perakende",
+      "domains": [
+        "boynergrup.com"
+      ]
+    },
+    {
+      "name": "Insider",
+      "city": "İstanbul",
+      "district": "Şişli",
+      "category": "Startup / Scaleup (SaaS)",
+      "domains": [
+        "useinsider.com"
+      ]
+    },
+    {
+      "name": "OBSS",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "obss.tech"
+      ]
+    },
+    {
+      "name": "Commencis",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "commencis.com"
+      ]
+    },
+    {
+      "name": "Netaş",
+      "city": "İstanbul",
+      "district": "Kurtköy",
+      "category": "Yerleşik Yazılım",
+      "domains": [
+        "netas.com.tr"
+      ]
+    },
+    {
+      "name": "Sabancı DX",
+      "city": "İstanbul",
+      "district": "Sarıyer",
+      "category": "Kurumsal - Teknoloji",
+      "domains": [
+        "sabancidx.com"
+      ]
+    },
+    {
+      "name": "KoçSistem",
+      "city": "İstanbul",
+      "district": "Ümraniye",
+      "category": "Kurumsal - Teknoloji",
+      "domains": [
+        "kocsistem.com.tr"
+      ]
+    },
+    {
+      "name": "Koç Digital",
+      "city": "İstanbul",
+      "district": "Ümraniye",
+      "category": "Kurumsal - Veri/Analitik",
+      "domains": [
+        "kocdigital.com"
+      ]
+    },
+    {
+      "name": "Doğuş Teknoloji",
+      "city": "İstanbul",
+      "district": "Şişli",
+      "category": "Kurumsal - Teknoloji",
+      "domains": [
+        "d-teknoloji.com.tr"
+      ]
+    },
+    {
+      "name": "Vispera",
+      "city": "İstanbul",
+      "district": "Teknopark İstanbul",
+      "category": "Startup (Görüntü İşleme/AI)",
+      "domains": [
+        "vispera.co"
+      ]
+    },
+    {
+      "name": "Armut",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Startup / Scaleup",
+      "domains": [
+        "armut.com"
+      ]
+    },
+    {
+      "name": "Martı",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Scaleup (NASDAQ)",
+      "domains": [
+        "marti.tech"
+      ]
+    },
+    {
+      "name": "Peak Games",
+      "city": "İstanbul",
+      "district": "Zorlu Center",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "peak.com"
+      ]
+    },
+    {
+      "name": "Dream Games",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "dreamgames.com"
+      ]
+    },
+    {
+      "name": "Rollic Games",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "rollicgames.com"
+      ]
+    },
+    {
+      "name": "Spyke Games",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "spykegames.com"
+      ]
+    },
+    {
+      "name": "Ace Games",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "acegames.io"
+      ]
+    },
+    {
+      "name": "Bigger Games",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "biggergames.com"
+      ]
+    },
+    {
+      "name": "Panteon Games",
+      "city": "İstanbul",
+      "district": "Ataşehir",
+      "category": "Oyun Stüdyosu",
+      "domains": [
+        "panteon.games",
+        "panteongames.com"
+      ]
+    },
+    {
+      "name": "Turkcell (Genel Müdürlük)",
+      "city": "İstanbul",
+      "district": "Maltepe",
+      "category": "Kurumsal - Telekom",
+      "domains": [
+        "turkcell.com.tr"
+      ]
+    },
+    {
+      "name": "Vodafone Türkiye",
+      "city": "İstanbul",
+      "district": "Ümraniye",
+      "category": "Kurumsal - Telekom",
+      "domains": [
+        "vodafone.com.tr"
+      ]
+    },
+    {
+      "name": "Türk Hava Yolları",
+      "city": "İstanbul",
+      "district": "Yeşilköy",
+      "category": "Kurumsal - Havacılık",
+      "domains": [
+        "turkishairlines.com"
+      ]
+    },
+    {
+      "name": "Turkish Technology (THY Teknoloji)",
+      "city": "İstanbul",
+      "district": "İstanbul Havalimanı",
+      "category": "Kurumsal - Havacılık Teknoloji",
+      "domains": [
+        "turkishtechnology.com"
+      ]
+    },
+    {
+      "name": "Tüpraş",
+      "city": "İstanbul",
+      "district": "Kocaeli / Körfez",
+      "category": "Kurumsal - Enerji (BİST)",
+      "domains": [
+        "tupras.com.tr"
+      ]
+    },
+    {
+      "name": "Anadolu Efes",
+      "city": "İstanbul",
+      "district": "Esenyurt",
+      "category": "Kurumsal - FMCG (BİST)",
+      "domains": [
+        "anadoluefes.com"
+      ]
+    },
+    {
+      "name": "Coca-Cola İçecek",
+      "city": "İstanbul",
+      "district": "Dudullu",
+      "category": "Kurumsal - FMCG (BİST)",
+      "domains": [
+        "cci.com.tr"
+      ]
+    },
+    {
+      "name": "Yıldız Holding / pladis",
+      "city": "İstanbul",
+      "district": "Kısıklı",
+      "category": "Kurumsal - FMCG",
+      "domains": [
+        "yildizholding.com.tr",
+        "pladisglobal.com"
+      ]
+    },
+    {
+      "name": "Eczacıbaşı Topluluğu",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Kurumsal - Sanayi/Sağlık",
+      "domains": [
+        "eczacibasi.com.tr"
+      ]
+    },
+    {
+      "name": "Zorlu Holding",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Kurumsal - Sanayi/Enerji",
+      "domains": [
+        "zorlu.com.tr"
+      ]
+    },
+    {
+      "name": "Enerjisa Enerji",
+      "city": "İstanbul",
+      "district": "Sarıyer",
+      "category": "Kurumsal - Enerji (BİST)",
+      "domains": [
+        "enerjisa.com.tr"
+      ]
+    }
+  ]
+}

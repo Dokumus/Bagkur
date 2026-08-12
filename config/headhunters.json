@@ -1,0 +1,36 @@
+{
+  "_comment": "Recruitment/staffing agencies and headhunters to exclude. company_names + name_keywords are matched (case-insensitive substring) against the posting company at SCAN time. jd_phrases + email_domains are matched against the fetched JD text at EVALUATE time (catches agencies posting under a client's masked name). Add your own entries freely.",
+  "company_names": [
+    "Michael Page", "Page Personnel", "PageGroup", "Hays", "Robert Walters", "Walters People",
+    "Robert Half", "Harvey Nash", "Harnham", "Darwin Recruitment", "Vivid Resourcing",
+    "Doghouse Recruitment", "Nigel Frank", "Mason Frank", "Jefferson Frank", "Tenth Revolution",
+    "Frank Recruitment", "Huxley", "Real Staffing", "Computer Futures", "SThree", "Progressive",
+    "Modis", "Akkodis", "Brunel", "Yacht", "Randstad", "Adecco", "Manpower", "Tempo-Team",
+    "YoungCapital", "Start People", "Undutchables", "Blue Lynx", "Adams Multilingual",
+    "Abroad Experience", "Octagon Professionals", "YER", "Independent Recruiters", "Xelvin",
+    "Compagnon", "Levy Professionals", "Salt", "Austin Fraser", "Oscar Technology",
+    "Understanding Recruitment", "La Fosse", "Trust In SODA", "Client Server", "Empiric",
+    "Xcede", "Big Cloud", "Datatech", "Intellect Group", "Talentmark", "Maandag", "Continu",
+    "Between Staffing", "Circle8", "Bergler", "DPA", "Sterk Recruitment", "Blinq", "Nedis Recruitment",
+    "Russell Tobin", "Pride Global", "Jobgether"
+  ],
+  "name_keywords": [
+    "recruit", "resourcing", "staffing", "headhunt", "executive search", "interim professionals",
+    "detachering", "detachment", "payrolling", "secondment", "werving en selectie", "talent solutions",
+    "search & selection", "search and selection"
+  ],
+  "email_domains": [
+    "vividresourcing.com", "doghouse-recruitment.nl", "michaelpage", "hays.", "roberthalf",
+    "robertwalters", "walterspeople", "darwinrecruitment", "frankgroup", "sthree", "huxley",
+    "computerfutures", "realstaffing", "harnham", "brunel.net", "yacht.nl", "randstad",
+    "undutchables", "bluelynx", "adamsrecruitment", "octagon", "xelvin", "austinfraser",
+    "understandingrecruitment", "lafosse", "trustinsoda"
+  ],
+  "jd_phrases": [
+    "my client", "our client", "on behalf of our client", "on behalf of my client",
+    "for one of our clients", "one of our clients", "we are recruiting for", "recruitment agency",
+    "recruitment consultant", "a leading recruitment", "confidential client", "our client is a",
+    "my client is a", "our client is looking", "client is seeking", "as a recruitment",
+    "we are a recruitment", "on behalf of a client"
+  ]
+}

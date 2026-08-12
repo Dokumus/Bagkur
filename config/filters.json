@@ -1,0 +1,130 @@
+{
+ "_comment": "SINGLE SOURCE OF TRUTH for every elimination rule in the job search. The dashboard's 🛡 Filters panel renders this file, with live counts, so you can always see exactly what is being filtered out and why. Toggling a filter here (or in the panel) changes what the board shows. Regex patterns are matched case-insensitively. `text_patterns` are matched against the evaluation report + tracker notes (i.e. the JD content); `title_patterns` against the role title; `company_patterns` against the company name. An optional `lanes` array restricts a rule to specific lanes (\"fulltime\" and/or \"freelance\"); if omitted, the rule applies to BOTH lanes. The freelance lane deliberately bypasses fixed_term / consultancy / headhunter because contract, client-project and broker postings are the normal, WANTED channel for ZZP/freelance work.",
+ "keep_threshold": 3.4,
+ "filters": [
+  {
+   "id": "headhunter",
+   "label": "Aracı / headhunter firmaları",
+   "why": "Randstad, Michael Page, Hays gibi aracıların ilanlarıyla ilgilenmiyorsun; gerçek işveren ve koşullar belirsiz. NOT: yalnızca TAM-ZAMANLI lane'de eler — freelance/ZZP piyasasında broker/aracı normal kanaldır (Striive, Jellow), o yüzden freelance lane'de baypas edilir.",
+   "source": "config/headhunters.json",
+   "lanes": [
+    "fulltime"
+   ],
+   "enabled": true
+  },
+  {
+   "id": "consultancy",
+   "label": "Danışmanlık / consultant ilanları",
+   "why": "Client-project / secondment modeli — müşteriye kiralanma, sık proje değişimi, gerçek işveren belirsiz. TAM-ZAMANLI işte istenmiyor; freelance lane'de bu model normaldir, o yüzden orada baypas edilir.",
+   "lanes": [
+    "fulltime"
+   ],
+   "title_patterns": [
+    "\\bconsultant\\b",
+    "\\bconsultancy\\b",
+    "\\bconsulting\\b",
+    "\\badvisory\\b",
+    "\\bdetachering\\b"
+   ],
+   "company_patterns": [
+    "\\bconsulting\\b",
+    "\\bconsultancy\\b",
+    "\\bconsultants\\b",
+    "\\badvisory\\b",
+    "\\bcapgemini\\b",
+    "\\baccenture\\b",
+    "\\bdeloitte\\b",
+    "\\bepam\\b",
+    "\\bsopra steria\\b",
+    "\\bcgi\\b",
+    "\\bamaris\\b",
+    "\\binfosys\\b",
+    "\\bcognizant\\b",
+    "\\bwipro\\b",
+    "\\btcs\\b",
+    "\\bsii group\\b"
+   ],
+   "enabled": true
+  },
+  {
+   "id": "fixed_term",
+   "label": "Süreli kontrat (3 / 6 / 8 ay, freelance, interim)",
+   "why": "İş güvencesi yok — layoff ikliminde TAM-ZAMANLI tarafta süreli/freelance sözleşme istemiyorsun. Freelance lane'de bunlar aranan şeydir → orada baypas edilir. NOT: desenler kasten dar tutuldu ki 'ilk 6 ayda oryantasyon' gibi ifadeler yanlışlıkla elenmesin.",
+   "lanes": [
+    "fulltime"
+   ],
+   "text_patterns": [
+    "\\b(fixed[-\\s]term|temporary contract|tijdelijk contract|befristet|zeitlich befristet)\\b",
+    "\\b(interim|contract|freelance)\\s+(role|position|assignment|engagement|basis)\\b",
+    "\\b(contract|duration|assignment|engagement)\\b[^.\\n]{0,25}\\b\\d{1,2}\\s*(month|months|maanden|monate|ay)\\b",
+    "\\b\\d{1,2}[-\\s]month(s)?\\s+(contract|assignment|engagement|project|role|position)\\b",
+    "\\bType:\\s*Freelance\\b",
+    "\\bZZP\\b"
+   ],
+   "enabled": true
+  },
+  {
+   "id": "management",
+   "label": "İnsan yöneten başlıklar (Head / Director / Manager / VP / Chief)",
+   "why": "Aday bireysel katkıcı (IC) analist — ekip yönetme geçmişi yok. NOT: Senior / Lead / Staff / Principal ANALYST rolleri BURADA ELENMEZ; onlar adayın lane'i (CV'de 'Expert Business Data Analyst'). Eleme kıdeme değil, insan-yönetimine bakar.",
+   "title_patterns": [
+    "\\b(head\\s+of|head|director|chief|vp|vice[-\\s]president|manager)\\b"
+   ],
+   "title_exceptions": [
+    "\\b(junior|jr\\.?|entry|graduate|trainee)\\b"
+   ],
+   "enabled": true
+  },
+  {
+   "id": "senior_dsde",
+   "label": "Senior/mid Data & ML Engineer (altyapı)",
+   "why": "2026-08 güncel CV'ye göre DARALTILDI. Aday artık profesyonel modelleme yapıyor (Turkcell'de zaman serisi/regresyon, freelance'te OR-Tools CP-SAT optimizasyonu ve PostgreSQL boyutsal model), bu yüzden Data Scientist ve Analytics Engineer ilanları ARTIK GİZLENMİYOR — uygun tavanı değerlendirme koyuyor (analitik ağırlıklı DS: junior-mid normal, senior cap 3.5; araştırma/ML ağırlıklı DS: cap 3.2/2.9; Analytics Engineer: cap 3.5). Yalnızca ALTYAPI ailesi elenir: kıdemli Data Engineer / ML Engineer / MLOps / Platform Engineer — orada gerçekten alan tecrübesi yok. Junior/0-2yr hepsi görünür kalır.",
+   "enabled": true
+  },
+  {
+   "id": "internship",
+   "label": "Staj / intern ilanları",
+   "why": "Aday M.Sc. + yıllarca analist tecrübesiyle staj seviyesinin üstünde.",
+   "title_patterns": [
+    "\\b(intern|internship|stagiair|stage|werkstudent|working student|praktikum)\\b"
+   ],
+   "enabled": true
+  }
+ ],
+ "scoring_rules": [
+  {
+   "label": "Felemenkçe / Almanca zorunluluğu",
+   "effect": "cap 3.0",
+   "why": "Adayın Felemenkçesi ~A1, Almancası yok. 'Nice to have' ise cap uygulanmaz. TÜRKÇE ilanlarda cap YOK (ana dil)."
+  },
+  {
+   "label": "Sponsorluk yok ibaresi (NL dışı Avrupa)",
+   "effect": "eleme",
+   "why": "NL dışında sponsorluk vermeyen ilanlar erişilemez."
+  },
+  {
+   "label": "CV'de olmayan zorunlu sektör deneyimi",
+   "effect": "eleme",
+   "why": "'Nice to have' ise kapsama alınır, zorunlu ise elenir."
+  },
+  {
+   "label": "Saf Data Engineering / Software Engineering",
+   "effect": "cap 3.0",
+   "why": "Pipeline/altyapı çekirdek ise adjacent — adayın lane'i değil."
+  },
+  {
+   "label": "Layoff / istikrarsızlık sinyali",
+   "effect": "-0.5 … -1.0",
+   "why": "Kâr uyarısı, distressed M&A, backfill, kriz altındaki ekip. Bkz config/company-risk.json."
+  },
+  {
+   "label": "Yeniden yayınlanmış (reposted) ilan",
+   "effect": "eleme",
+   "why": "Genelde doldurulamamış / hayalet ilan."
+  }
+ ],
+ "keep_rule": {
+  "label": "Saklama barı",
+  "detail": "Skoru 3.4 altındaki ilanlar her scan sonrası tracker'dan ve reports/'tan SİLİNİR (prune-tracker.mjs). Sadece data/rejected.tsv'ye mezar taşı bırakılır ki tarayıcı bir daha getirmesin. Başvurduğun işler (Applied/Interview/Offer) skoruna bakılmaksızın ASLA silinmez."
+ }
+}

@@ -1,0 +1,106 @@
+{
+  "_comment": "İş panosu kaynakları — yerel tarayıcı (web-dashboard/scan-jobs.mjs) bunları her koşuda çeker. ATS panoları (Greenhouse/Lever/Ashby/...) portals.yml'deki tracked_companies üzerinden zaten taranıyor; burası ŞİRKET DIŞI panolar içindir. reliability: 'high' = kararlı JSON API, 'medium' = public HTML/gömülü JSON parse (site değişirse kırılabilir — probe-job-sources.mjs bunu yakalar). Kırılan kaynak sessizce boş dönmez, tarama özetinde raporlanır.",
+  "boards": [
+    {
+      "id": "kariyer-net",
+      "name": "kariyer.net",
+      "adapter": "kariyernet",
+      "reliability": "medium",
+      "enabled": true,
+      "scope": "tr",
+      "note": "Türkiye'nin en büyük iş panosu. Login'siz arama sayfası sunucu tarafında render ediliyor; ilan kartları (positionName/cityName/şirket) HTML'den okunuyor. TÜRKÇE anahtar kelime şart — İngilizce sorgu filtrelenmemiş genel listeye düşüyor.",
+      "queries": [
+        "veri analisti",
+        "veri bilimci",
+        "iş zekası",
+        "iş zekası uzmanı",
+        "iş analisti",
+        "raporlama uzmanı",
+        "veri mühendisi",
+        "data analyst türkiye"
+      ]
+    },
+    {
+      "id": "techcareer-net",
+      "name": "techcareer.net",
+      "adapter": "techcareer",
+      "reliability": "medium",
+      "enabled": true,
+      "scope": "tr",
+      "note": "Türkiye'nin teknoloji odaklı panosu — adayın hedef alanına en yakın TR kaynağı. Sunucu tarafı yalnızca ilk sayfayı (en yeni ~20 ilan) veriyor, sayfalama parametresi public değil; günlük tarama bunu yuvarlanan kapsama çeviriyor."
+    },
+    {
+      "id": "arbeitnow",
+      "name": "Arbeitnow",
+      "adapter": "arbeitnow",
+      "reliability": "high",
+      "enabled": true,
+      "scope": "eu",
+      "note": "Ücretsiz public JSON API (Avrupa ağırlıklı, Almanya/Hollanda yoğun). Anahtar gerektirmiyor. NL/Münih kapsamına da katkı veriyor."
+    },
+    {
+      "id": "remotive",
+      "name": "Remotive",
+      "adapter": "remotive",
+      "reliability": "high",
+      "enabled": true,
+      "scope": "remote",
+      "note": "Public JSON API. Yalnızca Türkiye'den çalışılabilir görünen ilanlar alınır (worldwide/EMEA/Europe/Turkey); ABD-only remote elenir.",
+      "queries": ["data analyst", "business intelligence", "data engineer", "business analyst"]
+    },
+    {
+      "id": "jobicy",
+      "name": "Jobicy",
+      "adapter": "jobicy",
+      "reliability": "high",
+      "enabled": true,
+      "scope": "remote",
+      "note": "Public JSON API (v2). Bölge filtresi destekliyor; EMEA/Europe/anywhere ilanları alınır."
+    },
+    {
+      "id": "himalayas",
+      "name": "Himalayas",
+      "adapter": "himalayas",
+      "reliability": "high",
+      "enabled": true,
+      "scope": "remote",
+      "note": "Public JSON API. Ülke kısıtı alanına bakılır; Türkiye/Avrupa/worldwide dışındakiler elenir."
+    },
+    {
+      "id": "remoteok",
+      "name": "RemoteOK",
+      "adapter": "remoteok",
+      "reliability": "high",
+      "enabled": false,
+      "scope": "remote",
+      "note": "Public JSON API ama ağırlıklı ABD/global startup ve çoğu ilan konum kısıtını belirtmiyor — gürültü yüksek. İhtiyaç olursa enabled:true yap."
+    },
+    {
+      "id": "youthall",
+      "name": "Youthall",
+      "adapter": null,
+      "reliability": "manual",
+      "enabled": false,
+      "scope": "tr",
+      "note": "TR yeni mezun/junior odaklı — profil için çok uygun AMA ilan listesi tarayıcıda JS ile kuruluyor, sunucu HTML'inde ilan yok. Programatik kapsama alınamadı; portals.yml'de site: arama sorgusuyla kapsanıyor."
+    },
+    {
+      "id": "eleman-net",
+      "name": "eleman.net",
+      "adapter": null,
+      "reliability": "manual",
+      "enabled": false,
+      "scope": "tr",
+      "note": "İlan listesi JS ile render ediliyor, sunucu HTML'inde ilan bağlantısı yok. Programatik kapsama alınamadı."
+    },
+    {
+      "id": "isbul-net",
+      "name": "isbul.net",
+      "adapter": null,
+      "reliability": "manual",
+      "enabled": false,
+      "scope": "tr",
+      "note": "Ana sayfada ilan bağlantıları var ama arama sonuç sayfası kararlı bir kalıp vermedi; mavi yakalı ilan ağırlıklı. Kapsama alınmadı."
+    }
+  ]
+}

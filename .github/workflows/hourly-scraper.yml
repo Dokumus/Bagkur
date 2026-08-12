@@ -1,0 +1,60 @@
+name: Hourly Job Scraper (7/24 Turkey Scan)
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Every hour on the hour
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  scrape-and-evaluate:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Required to push updated scan status and applications back to repo
+
+    concurrency:
+      group: hourly-scraper
+      cancel-in-progress: false
+
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Dependencies
+        run: |
+          npm ci || npm install
+          npx playwright install --with-deps chromium
+
+      - name: Run Scan and Liveness Check
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MIN_TELEGRAM_SCORE: '3.3'
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          echo "==== Starting Hourly Job Scanner (Gemini Free Engine) ===="
+          node web-dashboard/scan-jobs.mjs || true
+          node merge-tracker.mjs || true
+          node liveness-sweep.mjs --limit 60 || true
+
+      - name: Commit and Push State Updates
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ batch/ reports/ config/ portals.yml || true
+          if git diff --staged --quiet; then
+            echo "No state changes to commit."
+          else
+            git commit -m "chore(state): hourly scan update & notifications [skip ci]"
+            git push origin HEAD
+          fi
