@@ -193,6 +193,196 @@ search_queries:
 
 tracked_companies:
 
+  # ===== TURKEY TECH, FINTECH & E-COMMERCE =====
+
+  - name: Trendyol
+    careers_url: https://jobs.greenhouse.io/trendyol
+    api: https://boards-api.greenhouse.io/v1/boards/trendyol/jobs
+    notes: "Istanbul/Remote TR. E-commerce & Marketplace. Large data/BI/AI organization."
+    enabled: true
+
+  - name: Hepsiburada
+    careers_url: https://jobs.lever.co/hepsiburada
+    notes: "Istanbul/Remote TR. E-commerce leader & Hepsipay fintech."
+    enabled: true
+
+  - name: Papara
+    careers_url: https://jobs.lever.co/papara
+    notes: "Istanbul/Remote TR. Leading Fintech / Neobank."
+    enabled: true
+
+  - name: Midas
+    careers_url: https://jobs.greenhouse.io/midas
+    api: https://boards-api.greenhouse.io/v1/boards/midas/jobs
+    notes: "Istanbul/Remote TR. Investment Fintech app."
+    enabled: true
+
+  - name: Insider
+    careers_url: https://jobs.greenhouse.io/insider
+    api: https://boards-api.greenhouse.io/v1/boards/insider/jobs
+    notes: "Istanbul/Remote TR. AI Marketing SaaS Unicorn."
+    enabled: true
+
+  - name: iyzico
+    careers_url: https://jobs.lever.co/iyzico
+    notes: "Istanbul/Remote TR. Payment Gateway (PayU Group)."
+    enabled: true
+
+  - name: Dream Games
+    careers_url: https://jobs.lever.co/dreamgames
+    notes: "Istanbul. Mobile Gaming Unicorn."
+    enabled: true
+
+  - name: Peak Games
+    careers_url: https://www.peak.com/careers
+    notes: "Istanbul. Mobile Gaming Unicorn (Take-Two/Zynga)."
+    enabled: true
+
+  - name: Sahibinden.com
+    careers_url: https://kariyer.sahibinden.com
+    notes: "Istanbul. Classifieds & Marketplace tech leader."
+    enabled: true
+
+  - name: Getir
+    careers_url: https://jobs.lever.co/getir
+    notes: "Istanbul. Quick commerce & logistics analytics."
+    enabled: true
+
+  - name: Çiçeksepeti
+    careers_url: https://ciceksepeti.bamboohr.com/careers
+    notes: "Istanbul. E-commerce & gift tech platform."
+    enabled: true
+
+  - name: Param
+    careers_url: https://param.com.tr/kariyer
+    notes: "Ankara/Istanbul. Payment platform & Fintech ecosystem."
+    enabled: true
+
+  - name: Figopara
+    careers_url: https://figopara.com/kariyer
+    notes: "Istanbul. Supply chain finance & Fintech."
+    enabled: true
+
+  - name: Craftgate
+    careers_url: https://craftgate.io/careers
+    notes: "Istanbul. Payment orchestration platform."
+    enabled: true
+
+  - name: Colendi
+    careers_url: https://jobs.lever.co/colendi
+    notes: "Istanbul. Banking as a Service / Fintech platform."
+    enabled: true
+
+  - name: Tarfin
+    careers_url: https://jobs.lever.co/tarfin
+    notes: "Istanbul/Remote TR. Agri-fintech & credit analytics."
+    enabled: true
+
+  - name: Commencis
+    careers_url: https://jobs.lever.co/commencis
+    notes: "Istanbul/Izmir. Digital transformation & CX engineering."
+    enabled: true
+
+  - name: Picus Security
+    careers_url: https://jobs.lever.co/picussecurity
+    notes: "Ankara/Istanbul/Remote. Cyber security SaaS."
+    enabled: true
+
+  - name: Segmentify
+    careers_url: https://segmentify.com/careers
+    notes: "Istanbul/Remote. E-commerce AI recommendation engine."
+    enabled: true
+
+  - name: Softtech
+    careers_url: https://softtech.com.tr/kariyer
+    notes: "Istanbul. İş Bankası technology company."
+    enabled: true
+
+  - name: Intertech
+    careers_url: https://intertech.com.tr/kariyer
+    notes: "Istanbul. DenizBank financial technology company."
+    enabled: true
+
+  - name: Garanti BBVA Teknoloji
+    careers_url: https://www.garantibbvateknoloji.com.tr/kariyer
+    notes: "Istanbul. Banking technology & advanced analytics."
+    enabled: true
+
+  - name: Akbank Teknoloji
+    careers_url: https://www.akbank.com/tr-tr/kariyer
+    notes: "Istanbul/Kocaeli. Banking technology & data science."
+    enabled: true
+
+  - name: Yapı Kredi Teknoloji
+    careers_url: https://www.yapikrediteknoloji.com.tr/kariyer
+    notes: "Kocaeli/Gebze. Banking technology & AI center."
+    enabled: true
+
+  - name: Fibabanka
+    careers_url: https://fibabanka.com.tr/kariyer
+    notes: "Istanbul. Banking & Finberg fintech ecosystem."
+    enabled: true
+
+  - name: KoçDigital
+    careers_url: https://kocdigital.com/kariyer
+    notes: "Istanbul. AI & IoT consultancy, data science."
+    enabled: true
+
+  - name: SabancıDx
+    careers_url: https://sabancidx.com/kariyer
+    notes: "Istanbul. Digital Transformation & Cloud/Analytics."
+    enabled: true
+
+  - name: Doğuş Teknoloji
+    careers_url: https://d-teknoloji.com.tr/kariyer
+    notes: "Istanbul. Enterprise technology & data engineering."
+    enabled: true
+
+  - name: Obilet
+    careers_url: https://obilet.com/kariyer
+    notes: "Istanbul. Travel tech & ticket booking leader."
+    enabled: true
+
+  - name: Enuygun
+    careers_url: https://enuygun.com/kariyer
+    notes: "Istanbul. Travel tech & comparison platform."
+    enabled: true
+
+  - name: Armut
+    careers_url: https://jobs.lever.co/armut
+    notes: "Istanbul/Remote TR. Local service marketplace."
+    enabled: true
+
+  - name: Migros One
+    careers_url: https://migrosteknoloji.com.tr
+    notes: "Istanbul. Retail tech, e-commerce & quick delivery."
+    enabled: true
+
+  - name: LC Waikiki Digital
+    careers_url: https://corporate.lcwaikiki.com/kariyer
+    notes: "Istanbul. Retail digital transformation & analytics."
+    enabled: true
+
+  - name: Turkcell Teknoloji
+    careers_url: https://turkcell.com.tr/tr/hakkimizda/kariyer
+    notes: "Istanbul. Telecom, CRM, pricing & campaign analytics."
+    enabled: true
+
+  - name: Türk Telekom Teknoloji
+    careers_url: https://turktelekomkariyer.com.tr
+    notes: "Istanbul/Ankara. Telecom & digital experience analytics."
+    enabled: true
+
+  - name: Spyke Games
+    careers_url: https://jobs.lever.co/spykegames
+    notes: "Istanbul. Mobile casual gaming startup."
+    enabled: true
+
+  - name: Gram Games
+    careers_url: https://gram.games/careers
+    notes: "Istanbul. Mobile gaming (Zynga/Take-Two)."
+    enabled: true
+
   # -- AI Labs & LLM providers --
 
   - name: Anthropic

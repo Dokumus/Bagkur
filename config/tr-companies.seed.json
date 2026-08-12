@@ -1813,6 +1813,236 @@
       "domains": [
         "enerjisa.com.tr"
       ]
+    },
+    {
+      "name": "Trendyol",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Kurumsal - E-Ticaret Teknoloji",
+      "domains": ["trendyol.com"],
+      "ats": ["https://jobs.greenhouse.io/trendyol"]
+    },
+    {
+      "name": "Hepsiburada",
+      "city": "İstanbul",
+      "district": "Şişli",
+      "category": "Kurumsal - E-Ticaret & Fintek",
+      "domains": ["hepsiburada.com"],
+      "ats": ["https://jobs.lever.co/hepsiburada"]
+    },
+    {
+      "name": "Papara",
+      "city": "İstanbul",
+      "district": "Ümraniye",
+      "category": "Startup - Fintek",
+      "domains": ["papara.com"],
+      "ats": ["https://jobs.lever.co/papara"]
+    },
+    {
+      "name": "Midas",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Startup - Fintek",
+      "domains": ["getmidas.com"],
+      "ats": ["https://jobs.greenhouse.io/midas"]
+    },
+    {
+      "name": "Insider",
+      "city": "İstanbul",
+      "district": "Ataşehir",
+      "category": "Unicorn - AI & Yapay Zeka SaaS",
+      "domains": ["useinsider.com"],
+      "ats": ["https://jobs.greenhouse.io/insider"]
+    },
+    {
+      "name": "iyzico",
+      "city": "İstanbul",
+      "district": "Ataşehir",
+      "category": "Kurumsal - Fintek / Ödeme",
+      "domains": ["iyzico.com"],
+      "ats": ["https://jobs.lever.co/iyzico"]
+    },
+    {
+      "name": "Dream Games",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Unicorn - Oyun Teknoloji",
+      "domains": ["dreamgames.com"],
+      "ats": ["https://jobs.lever.co/dreamgames"]
+    },
+    {
+      "name": "Peak Games",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Unicorn - Oyun Teknoloji",
+      "domains": ["peak.com"]
+    },
+    {
+      "name": "Sahibinden.com",
+      "city": "İstanbul",
+      "district": "Bostancı",
+      "category": "Kurumsal - Teknoloji Pazaryeri",
+      "domains": ["sahibinden.com"]
+    },
+    {
+      "name": "Çiçeksepeti",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Kurumsal - E-Ticaret",
+      "domains": ["ciceksepeti.com"]
+    },
+    {
+      "name": "Param",
+      "city": "Ankara / İstanbul",
+      "district": "Çankaya / Maslak",
+      "category": "Kurumsal - Fintek",
+      "domains": ["param.com.tr"]
+    },
+    {
+      "name": "Figopara",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Startup - Fintek",
+      "domains": ["figopara.com"]
+    },
+    {
+      "name": "Craftgate",
+      "city": "İstanbul",
+      "district": "Ataşehir",
+      "category": "Startup - Fintek",
+      "domains": ["craftgate.io"]
+    },
+    {
+      "name": "Colendi",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Startup - Fintek",
+      "domains": ["colendi.com"],
+      "ats": ["https://jobs.lever.co/colendi"]
+    },
+    {
+      "name": "Tarfin",
+      "city": "İstanbul",
+      "district": "Beşiktaş",
+      "category": "Startup - Agri-Fintek",
+      "domains": ["tarfin.com"],
+      "ats": ["https://jobs.lever.co/tarfin"]
+    },
+    {
+      "name": "Commencis",
+      "city": "İstanbul / İzmir",
+      "district": "İstinye",
+      "category": "Kurumsal - Dijital Ürün Teknoloji",
+      "domains": ["commencis.com"],
+      "ats": ["https://jobs.lever.co/commencis"]
+    },
+    {
+      "name": "Picus Security",
+      "city": "Ankara / İstanbul",
+      "district": "ODTÜ Teknokent",
+      "category": "Startup - Siber Güvenlik SaaS",
+      "domains": ["picussecurity.com"],
+      "ats": ["https://jobs.lever.co/picussecurity"]
+    },
+    {
+      "name": "Segmentify",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Startup - Yapay Zeka SaaS",
+      "domains": ["segmentify.com"]
+    },
+    {
+      "name": "Softtech (İş Bankası)",
+      "city": "İstanbul",
+      "district": "TUZLA / Maslak",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": ["softtech.com.tr"]
+    },
+    {
+      "name": "Intertech (DenizBank)",
+      "city": "İstanbul",
+      "district": "Kurtköy Teknopark",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": ["intertech.com.tr"]
+    },
+    {
+      "name": "Garanti BBVA Teknoloji",
+      "city": "İstanbul",
+      "district": "Pendik / Güneşli",
+      "category": "Kurumsal - Banka Teknoloji",
+      "domains": ["garantibbvateknoloji.com.tr"]
+    },
+    {
+      "name": "KoçDigital",
+      "city": "İstanbul",
+      "district": "Nakkaştepe",
+      "category": "Kurumsal - Yapay Zeka Danışmanlık",
+      "domains": ["kocdigital.com"]
+    },
+    {
+      "name": "SabancıDx",
+      "city": "İstanbul",
+      "district": "Sabancı Center",
+      "category": "Kurumsal - Veri & Dijital Teknolojiler",
+      "domains": ["sabancidx.com"]
+    },
+    {
+      "name": "Doğuş Teknoloji",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Kurumsal - Holding Teknoloji",
+      "domains": ["d-teknoloji.com.tr"]
+    },
+    {
+      "name": "Obilet",
+      "city": "İstanbul",
+      "district": "Maslak",
+      "category": "Kurumsal - Seyahat Teknoloji",
+      "domains": ["obilet.com"]
+    },
+    {
+      "name": "Enuygun",
+      "city": "İstanbul",
+      "district": "Küçükbakkalköy",
+      "category": "Kurumsal - Seyahat Teknoloji",
+      "domains": ["enuygun.com"]
+    },
+    {
+      "name": "Armut",
+      "city": "İstanbul",
+      "district": "Ataşehir",
+      "category": "Startup - Pazaryeri Teknoloji",
+      "domains": ["armut.com"],
+      "ats": ["https://jobs.lever.co/armut"]
+    },
+    {
+      "name": "Migros One / Migros Teknoloji",
+      "city": "İstanbul",
+      "district": "Ataşehir",
+      "category": "Kurumsal - Perakende Teknoloji",
+      "domains": ["migrosteknoloji.com.tr"]
+    },
+    {
+      "name": "LC Waikiki Digital",
+      "city": "İstanbul",
+      "district": "Halkalı",
+      "category": "Kurumsal - Perakende Teknoloji",
+      "domains": ["lcwaikiki.com"]
+    },
+    {
+      "name": "Spyke Games",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Startup - Oyun Teknoloji",
+      "domains": ["spykegames.com"],
+      "ats": ["https://jobs.lever.co/spykegames"]
+    },
+    {
+      "name": "Gram Games",
+      "city": "İstanbul",
+      "district": "Levent",
+      "category": "Kurumsal - Oyun Teknoloji",
+      "domains": ["gram.games"]
     }
   ]
 }
