@@ -14,8 +14,16 @@ set LOG=logs\scan-%STAMP%.log
 echo ==== tarama %DATE% %TIME% ==== >> "%LOG%"
 call node --use-system-ca web-dashboard\scan-jobs.mjs >> "%LOG%" 2>&1
 
-REM Canlılık denetimi her turda sınırlı sayıda kayıt işler; birikmiş liste
-REM birkaç tura yayılarak taranır (önbellek 40 saat boyunca "açık" sonucu tekrar denemez).
+REM 2) Yeni ilanların detay metinlerini çek (batch\jd-cache.json)
+call node --use-system-ca web-dashboard\fetch-jds.mjs >> "%LOG%" 2>&1
+
+REM 3) İlanları CV ve sıkı kurallarla değerlendir (Telegram bildirimi >= 3.7)
+call node --use-system-ca eval-and-notify.mjs >> "%LOG%" 2>&1
+
+REM 4) Değerlendirme sonuçlarını applications.md'ye birleştir ve pipeline'ı temizle
+call node --use-system-ca merge-tracker.mjs >> "%LOG%" 2>&1
+
+REM 5) Canlılık denetimi
 call node --use-system-ca liveness-sweep.mjs --limit 120 >> "%LOG%" 2>&1
 
 echo ==== bitti %TIME% ==== >> "%LOG%"

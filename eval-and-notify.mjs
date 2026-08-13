@@ -44,7 +44,7 @@ function isValidTargetJob(company, title, location) {
 
   // 2. RECRUITMENT / STAFFING AGENCY EXCLUSION (Aracı Firma İlanları)
   const agencyList = [
-    'pentanom', 'adecco', 'michael page', 'gini talent', 'experis', 'harnham', 
+    'jobgether', 'pentanom', 'adecco', 'michael page', 'gini talent', 'experis', 'harnham', 
     'brunel', 'manpower', 'randstad', 'talentown', 'es kariyer', 'es kariyer danis manlik',
     'danismanlik', 'danismani', 'human resources', 'recruitment'
   ];
@@ -52,12 +52,13 @@ function isValidTargetJob(company, title, location) {
     return { ok: false, reason: "Aracı / İşe Alım Ajansı İlanı" };
   }
 
-  // 3. NEGATIVE TITLE EXCLUSIONS (Data Engineer, Software Engineer, Growth, Consultant / Danışman)
+  // 3. NEGATIVE TITLE EXCLUSIONS (Data Engineer, Software Engineer, Growth, Consultant / Danışman, HR Analytics)
   const excludedTitleKeywords = [
     'data engineer', 'veri muhendisi', 'veri muhendisligi',
     'software engineer', 'yazilim muhendisi', 'yazilim muhendisligi',
     'growth', 'buyume',
-    'consultant', 'danisman', 'danismani', 'danismanlik'
+    'consultant', 'danisman', 'danismani', 'danismanlik',
+    'insan kaynaklari analitigi', 'ik analitigi', 'hr analytics', 'human resources analytics', 'insan kaynaklari veri analitigi'
   ];
   if (excludedTitleKeywords.some(k => t.includes(k))) {
     return { ok: false, reason: `Kapsam Dışı Unvan (${title})` };
@@ -100,6 +101,7 @@ async function evaluateJobStrict(jobData, cvContent) {
   const has10YearsReq = /10\+?\s*years|10\+?\s*yıl|10\s*yılı|minimum 10/i.test(text);
   const hasCreditRisk = /ifrs|ecl|rwa|pd\b|lgd\b|ead\b|kredi riski|kredi tahsis/i.test(text);
   const hasProductionDE = /3\+?\s*years.*data engineer|spark|airflow|lakehouse|data pipeline/i.test(text);
+  const hasFinancialCompliance = /financial security compliance|aml\b|kyc\b|sanctions screening|sanctions|transaction monitoring|mali suclar|aklama|kara para|suctan kaynaklanan/i.test(text);
 
   const prompt = `
 Sen son derece objektif, rasyonel ve gerçekçi bir İnsan Kaynakları ve Veri Bilimi Teknik Değerlendirme Uzmanısın.
@@ -111,6 +113,7 @@ ADAY PROFİLİ (Doğa Okumuş):
 - Deneyim: 9 Yıl Toplam (Turkcell 2 Patent sahibi - Kampanya ROI Ölçümleme & Kampanya Öneri Motoru, Tilburg M.Sc. Data Science, KPN Amsterdam, Getir).
 - Temel Yetkinlikler: İleri SQL, Python (scikit-learn, XGBoost, LightGBM), Power BI, OR-Tools CP-SAT optimizasyonu, Müşteri Segmentasyonu, Raporlama, Süreç Analizi.
 - Eksik Olduğu Alanlar (GÖRÜRSEK KESİNLİKLE CEZA UYGULA):
+  * Banka Finansal Güvenlik Uyum (AML, KYC, Sanctions Screening, Transaction Monitoring) tecrübesi YOKTUR (İlan istiyorsa Puan < 3.0 ver).
   * Banka Kredi Riski (PD, LGD, EAD, IFRS-9, ECL, RWA modelleri) tecrübesi YOKTUR (İlan istiyorsa Puan < 3.0 ver).
   * Saf Veri Mühendisliği (Production Data Engineering / Spark / Airflow 3+ yıl) tecrübesi YOKTUR (İlan istiyorsa Puan < 3.0 ver).
   * 10+ Yıl Yönetici/Müdür kıdemi beklentisi adayın 9 yıllık uzmanlık seviyesiyle örtüşmez (İlan istiyorsa Puan < 3.0 ver).
@@ -127,14 +130,14 @@ PUANLAMA KURALLARI:
 - 4.5 - 5.0: Mükemmel Uyum (SQL+Python+Power BI + Telekom/Perakende kampanya/müşteri analitiği + tam kıdem).
 - 3.7 - 4.4: Güçlü Uyum (Teknik yetkinlikler tam, adayın uzmanlık alanına oturuyor).
 - 3.0 - 3.6: Sınırda / Zayıf Uyum (Telegram'a gönderilmeyecek).
-- 1.0 - 2.9: DÜŞÜK UYUM (Domain uyuşmazlığı: Banka kredi riski, 10+ yıl yönetici, saf DE, MLOps, C++).
+- 1.0 - 2.9: DÜŞÜK UYUM (Domain uyuşmazlığı: Banka AML/KYC/Sanctions uyum, banka kredi riski, 10+ yıl yönetici, saf DE, MLOps, C++).
 
 Lütfen cevabını SADECE şu JSON formatında yaz:
 {
   "score": 2.8,
-  "summary": "İlan kredi riski (IFRS-9/PD) tecrübesi gerektirdiğinden adayın profiline uymamaktadır.",
+  "summary": "İlan finansal güvenlik/AML/KYC uyum tecrübesi gerektirdiğinden adayın profiline uymamaktadır.",
   "strengths": ["İleri SQL ve Veri Analizi tecrübesi"],
-  "gaps": ["Banka Kredi Riski ve ECL/RWA modelleme tecrübesi bulunmamaktadır"],
+  "gaps": ["Banka Finansal Güvenlik Uyum (AML, KYC, Sanctions) tecrübesi bulunmamaktadır"],
   "recommendation": "Pas Geçilebilir"
 }
 `;
@@ -161,8 +164,8 @@ Lütfen cevabını SADECE şu JSON formatında yaz:
         if (match) {
           const evalRes = JSON.parse(match[0]);
           // Post-process domain penalties if model missed it
-          if ((hasCreditRisk || has10YearsReq || hasProductionDE) && evalRes.score > 3.2) {
-            evalRes.score = 2.8;
+          if ((hasFinancialCompliance || hasCreditRisk || has10YearsReq || hasProductionDE) && evalRes.score > 3.2) {
+            evalRes.score = 2.5;
             evalRes.recommendation = "Pas Geçilebilir (Domain/Kıdem Uyuşmazlığı)";
           }
           return { ok: true, evaluation: evalRes };
@@ -188,6 +191,10 @@ Lütfen cevabını SADECE şu JSON formatında yaz:
   }
 
   // Strict Deductions
+  if (hasFinancialCompliance) {
+    score -= 1.6;
+    gaps.push("Banka Finansal Güvenlik Uyum (AML, KYC, Sanctions Screening, Transaction Monitoring) tecrübesi yoktur");
+  }
   if (hasCreditRisk) {
     score -= 1.5;
     gaps.push("Banka Kredi Riski (PD, LGD, EAD, IFRS-9, ECL, RWA) modelleme tecrübesi yoktur");
