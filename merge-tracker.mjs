@@ -277,6 +277,7 @@ for (const file of tsvFiles) {
           score: newScore,
           notes: addition.notes,
           jobUrl: addition.report,
+          reportUrl: addition.report,
         }).catch(err => console.error('Telegram alert error:', err));
       }
     } else {
@@ -301,6 +302,7 @@ for (const file of tsvFiles) {
         score: scoreVal,
         notes: addition.notes,
         jobUrl: addition.report,
+        reportUrl: addition.report,
       }).catch(err => console.error('Telegram alert error:', err));
     }
   }

@@ -329,7 +329,12 @@ async function loadDedup() {
 async function main() {
   const { positive, negative, companies, locations, custom } = await loadConfig();
   const { seenUrls, compRole } = await loadDedup();
-  const roles = ["Data Analyst", "Data Scientist", "Business Intelligence Analyst", "Analytics Engineer", "Business Analyst"];
+  const roles = [
+    "Data Analyst", "Data Scientist", "Business Intelligence Analyst", 
+    "Analytics Engineer", "Business Analyst", "CRM Analytics", 
+    "Pricing Analyst", "Marketing Analytics", "Commercial Analytics", 
+    "Customer Analytics", "Decision Scientist", "Veri Analisti", "İş Analisti"
+  ];
   // LinkedIn search locations are derived from your enabled regions in
   // config/locations.json — nothing about your target market is hardcoded here.
   const liLocs = [];

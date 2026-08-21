@@ -119,6 +119,65 @@ export async function sendTelegramMessage(text, options = {}) {
   return { ok: false, error: 'MAX_RETRIES_EXCEEDED' };
 }
 
+export function normCompany(s) {
+  return (s || '')
+    .toLowerCase()
+    .replace(/[ğ]/g, 'g').replace(/[ü]/g, 'u').replace(/[ş]/g, 's')
+    .replace(/[ı]/g, 'i').replace(/[ö]/g, 'o').replace(/[ç]/g, 'c')
+    .replace(/\b(inc|llc|ltd|gmbh|bv|nv|group|technologies|the|a\.s\.|as)\b/g, '')
+    .replace(/[^a-z0-9]+/g, '')
+    .trim();
+}
+
+export function normRole(s) {
+  return (s || '')
+    .toLowerCase()
+    .replace(/[ğ]/g, 'g').replace(/[ü]/g, 'u').replace(/[ş]/g, 's')
+    .replace(/[ı]/g, 'i').replace(/[ö]/g, 'o').replace(/[ç]/g, 'c')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\b(senior|junior|lead|staff|principal|kidemli|uzman|uzmani|analist|analisti|engineer|muhendisi)\b/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export function extractDedupKeys(jobData) {
+  const keys = new Set();
+  if (!jobData) return [];
+
+  const company = jobData.company || '';
+  const role = jobData.role || '';
+  const cNorm = normCompany(company);
+  const rNorm = normRole(role);
+
+  if (cNorm && rNorm) {
+    keys.add(`comp:${cNorm}::role:${rNorm}`);
+  }
+
+  const rawUrls = [jobData.jobUrl, jobData.reportUrl].filter(Boolean);
+  for (const raw of rawUrls) {
+    const rawStr = String(raw).trim();
+    // Check if markdown link format [num](url)
+    const mdMatch = rawStr.match(/\[(?:[^\]]+)\]\(([^)]+)\)/);
+    const targetUrl = mdMatch ? mdMatch[1] : rawStr;
+
+    // Extract report number if any (e.g. reports/1176-teb-2026-08-12.md or [1176])
+    const repNumMatch = targetUrl.match(/reports\/(\d+)-/) || rawStr.match(/\[(\d+)\]/);
+    if (repNumMatch) {
+      keys.add(`report:${repNumMatch[1]}`);
+    }
+
+    if (targetUrl.startsWith('http')) {
+      const cleanUrl = targetUrl.split('?')[0].split('#')[0].replace(/\/$/, '').toLowerCase();
+      keys.add(cleanUrl);
+    } else if (targetUrl.includes('reports/')) {
+      const repPath = targetUrl.slice(targetUrl.indexOf('reports/')).toLowerCase();
+      keys.add(repPath);
+    }
+  }
+
+  return [...keys];
+}
+
 /**
  * Formats and sends a Job Evaluation Alert to Telegram if score >= minScore (3.7) and not previously sent
  */
@@ -134,11 +193,10 @@ export async function sendJobEvaluationAlert(jobData) {
 
   // Dedup check against sent-telegram.json
   const sentSet = getSentHistory();
-  const dedupKey = (jobData.jobUrl && !jobData.jobUrl.includes('#')) 
-    ? jobData.jobUrl 
-    : `${(jobData.company || '').toLowerCase().trim()}::${(jobData.role || '').toLowerCase().trim()}`;
+  const keys = extractDedupKeys(jobData);
 
-  if (sentSet.has(dedupKey)) {
+  const alreadySent = keys.some(k => sentSet.has(k));
+  if (alreadySent) {
     console.log(`⏭️ Job "${jobData.company} - ${jobData.role}" already sent to Telegram previously. Skipping duplicate.`);
     return { skipped: true, reason: 'ALREADY_SENT' };
   }
@@ -163,7 +221,9 @@ export async function sendJobEvaluationAlert(jobData) {
 
   const res = await sendTelegramMessage(messageHtml, { parse_mode: 'HTML' });
   if (res && res.ok) {
-    sentSet.add(dedupKey);
+    for (const k of keys) {
+      sentSet.add(k);
+    }
     saveSentHistory(sentSet);
   }
   return res;
